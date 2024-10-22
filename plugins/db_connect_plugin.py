@@ -1,5 +1,5 @@
 # plugins/db_connect_plugin.py
-from db_connect import connect_to_database, close_database_connection
+from db_connect_sql import connect_to_database, close_database_connection
 from plugins.plugin_manager import Plugin
 
 class DbConnectPlugin(Plugin):
