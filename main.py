@@ -9,10 +9,19 @@ def main():
         print("Error loading config. Exiting.")
         return
     
-    # Step 2: Initialize the PluginManager with the loaded configuration
-    plugin_manager = PluginManager(config=config)
+    # Step 2: Define the plugin execution sequence
+    plugin_sequence = [
+        "db_connect_plugin",
+        "ycsb_plugin",
+        "sysbench_test_plugin",
+        "parse_sysbench_plugin",
+        "plot_dashboard_plugin"
+    ]
 
-    #Step 3: Load and run all plugins
+    # Step 3: Initialize the PluginManager with the loaded configuration and sequence
+    plugin_manager = PluginManager(config=config, plugin_sequence=plugin_sequence)
+
+    #Step 4: Load and run all plugins
 
     plugin_manager.load_plugins()  # Load all plugins in the "plugins" folder
     plugin_manager.run_plugins()   # Execute the setup, run, and teardown for each plugin
