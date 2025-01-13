@@ -47,7 +47,7 @@ def plot_sysbench_dashboard():
 
     plt.tight_layout()
     plt.savefig('./outputs/sysbench_dashboard.png')
-    plt.show()
+    #plt.show()
 
 def plot_ab_dashboard():
     # Load data from CSV files
@@ -74,4 +74,4 @@ def plot_ab_dashboard():
 
     plt.tight_layout()
     plt.savefig('./outputs/ab_dashboard.png')
-    plt.show()
+    #plt.show()
