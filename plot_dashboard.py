@@ -6,9 +6,9 @@ import seaborn as sns
 
 def plot_sysbench_dashboard():
     # Load data from CSV files
-    df = pd.read_csv('sysbench_intermediate.csv')
-    latency = pd.read_csv('sysbench_latency_stats.csv', index_col=0).squeeze()
-    fairness = pd.read_csv('sysbench_fairness_stats.csv', index_col=0).squeeze()
+    df = pd.read_csv('./outputs/sysbench_intermediate.csv')
+    latency = pd.read_csv('./outputs/sysbench_latency_stats.csv', index_col=0).squeeze()
+    fairness = pd.read_csv('./outputs/sysbench_fairness_stats.csv', index_col=0).squeeze()
 
     # Create subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 10))
@@ -46,5 +46,32 @@ def plot_sysbench_dashboard():
     axs[1,1].grid(axis='y')
 
     plt.tight_layout()
-    plt.savefig('sysbench_dashboard.png')
+    plt.savefig('./outputs/sysbench_dashboard.png')
+    plt.show()
+
+def plot_ab_dashboard():
+    # Load data from CSV files
+    summary_stats = pd.read_csv('./outputs/ab_summary_stats.csv')
+    connection_times = pd.read_csv('./outputs/ab_connection_times.csv')
+    percentiles = pd.read_csv('./outputs/ab_percentiles.csv')
+
+    # Create subplots
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5))
+
+    # Connection Times
+    connection_times.plot(kind='bar', ax=axs[0], color=['blue', 'green', 'red', 'purple'])
+    axs[0].set_title('Connection Times (ms)')
+    axs[0].set_ylabel('Time (ms)')
+    axs[0].set_xlabel('Category')
+    axs[0].grid(axis='y')
+
+    # Percentiles
+    percentiles.plot(kind='bar', x='Percentile', y='Time (ms)', ax=axs[1], color='orange')
+    axs[1].set_title('Latency Percentiles')
+    axs[1].set_ylabel('Time (ms)')
+    axs[1].set_xlabel('Percentile')
+    axs[1].grid(axis='y')
+
+    plt.tight_layout()
+    plt.savefig('./outputs/ab_dashboard.png')
     plt.show()

@@ -11,13 +11,13 @@ class ParseSysbenchPlugin(Plugin):
 
     def run(self):
         print("Parsing sysbench output...")
-        df_intermediate, final_stats, latency_stats, fairness_stats = parse_sysbench_output('sysbench_metrics.txt')
+        df_intermediate, final_stats, latency_stats, fairness_stats = parse_sysbench_output('./outputs/sysbench_metrics.txt')
         
         if not df_intermediate.empty:
             print("Saving parsed data to CSV...")
-            df_intermediate.to_csv("sysbench_intermediate.csv", index=False)
-            Series(final_stats).to_csv('sysbench_sql_stats.csv')
-            Series(latency_stats).to_csv('sysbench_latency_stats.csv')
-            Series(fairness_stats).to_csv('sysbench_fairness_stats.csv')
+            df_intermediate.to_csv("./outputs/sysbench_intermediate.csv", index=False)
+            Series(final_stats).to_csv('./outputs/sysbench_sql_stats.csv')
+            Series(latency_stats).to_csv('./outputs/sysbench_latency_stats.csv')
+            Series(fairness_stats).to_csv('./outputs/sysbench_fairness_stats.csv')
         else:
             print("Parsed data is empty. Check the input file or parsing logic.")

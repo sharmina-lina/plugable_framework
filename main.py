@@ -12,9 +12,11 @@ def main():
     # Step 2: Define the plugin execution sequence
     plugin_sequence = [
         "db_connect_plugin",
-        "ycsb_plugin",
+        #"ycsb_plugin",
         "sysbench_test_plugin",
         "parse_sysbench_plugin",
+        "load_balancer_plugin",
+        "parse_ab_plugin",
         "plot_dashboard_plugin"
     ]
 

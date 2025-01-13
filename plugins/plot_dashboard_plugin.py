@@ -1,5 +1,5 @@
 # plugins/plot_dashboard_plugin.py
-from plot_dashboard import plot_sysbench_dashboard
+from plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard
 from plugins.plugin_manager import Plugin
 
 class PlotDashboardPlugin(Plugin):
@@ -11,3 +11,5 @@ class PlotDashboardPlugin(Plugin):
     def run(self):
         print("Plotting the sysbench dashboard...")
         plot_sysbench_dashboard()
+        print("Plotting the apache benchmark(ab) dashboard...")
+        plot_ab_dashboard()

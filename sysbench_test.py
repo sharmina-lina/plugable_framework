@@ -53,7 +53,7 @@ def perform_sysbench_test(client, config):
     db_pass = config['database']['password']
     db_host = config['database']['host']
     db_port = config['database']['port']
-    threads = 10  # Set the number of threads you want to use
+    threads = 20  # Set the number of threads you want to use
     duration = 60  # Set the duration of the test in seconds
 
     # Construct the sysbench command
