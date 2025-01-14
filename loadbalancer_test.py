@@ -34,6 +34,19 @@ def perform_ab_test(client, config):
     lb_concurrency = config['Load_balance']['concurrency']
     lb_duration = config['Load_balance']['test_duration']
 
+    # Validate that all necessary parameters have values
+    if not all([lb_url, lb_num_requests, lb_concurrency, lb_duration]):
+        print("Missing required configuration values:")
+        if not lb_url:
+            print("- Load balancer URL (lb_url) is missing.")
+        if not lb_num_requests:
+            print("- Number of requests (lb_num_requests) is missing.")
+        if not lb_concurrency:
+            print("- Concurrency level (lb_concurrency) is missing.")
+        if not lb_duration:
+            print("- Test duration (lb_duration) is missing.")
+        return
+
     # Construct the `ab` command for load balancer testing
     ab_command = (
         f"ab -n {lb_num_requests} -c {lb_concurrency} {lb_url} > ab_metrics.txt"

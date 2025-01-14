@@ -24,11 +24,11 @@ class PlotDashboardPlugin(Plugin):
 
         axs[0].imshow(sysbench_img)
         axs[0].axis('off')  # Hide axes for better visualization
-        axs[0].set_title('Sysbench Dashboard')
+        axs[0].set_title('Dashboard of Database performance')
 
         axs[1].imshow(ab_img)
         axs[1].axis('off')  # Hide axes for better visualization
-        axs[1].set_title('AB Dashboard')
+        axs[1].set_title('Dashboard of Load Balancer performance')
 
         plt.tight_layout()
         plt.show()
