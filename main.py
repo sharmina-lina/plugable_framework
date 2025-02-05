@@ -11,13 +11,16 @@ def main():
     
     # Step 2: Define the plugin execution sequence
     plugin_sequence = [
+       
         "db_connect_plugin",
         #"ycsb_plugin",
         "sysbench_test_plugin",
         "parse_sysbench_plugin",
         "load_balancer_plugin",
         "parse_ab_plugin",
+        "application_testing_plugin",
         "plot_dashboard_plugin"
+        
     ]
 
     # Step 3: Initialize the PluginManager with the loaded configuration and sequence

@@ -75,3 +75,27 @@ def plot_ab_dashboard():
     plt.tight_layout()
     plt.savefig('./outputs/ab_dashboard.png')
     #plt.show()
+
+def plot_redis_dashboard():
+    throughput_df = pd.read_csv('./outputs/throughput_redis_data.csv')
+    latency_df = pd.read_csv('./outputs/latency_redis_data.csv')
+    # Create subplots
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5))
+
+    # Throughput Plot (Bar chart)
+    throughput_df.plot(kind='bar', ax=axs[0], color='blue', legend=False)
+    axs[0].set_title('Redis Benchmark Throughput')
+    axs[0].set_ylabel('Requests per Second (rps)')
+    axs[0].set_xlabel('Test Run')
+    axs[0].grid(axis='y')
+
+    # Latency Plot (Bar chart)
+    latency_df.plot(kind='bar', x='Percentile', y='Latency (ms)', ax=axs[1], color='orange', legend=False)
+    axs[1].set_title('Redis Benchmark Latency Percentiles')
+    axs[1].set_ylabel('Latency (ms)')
+    axs[1].set_xlabel('Percentile')
+    axs[1].grid(axis='y')
+
+    plt.tight_layout()
+    plt.savefig('./outputs/redis_dashboard.png')  # Save the figure to file
+    #plt.show()  # Display the plots

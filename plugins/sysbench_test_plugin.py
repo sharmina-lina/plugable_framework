@@ -14,12 +14,18 @@ class SysbenchTestPlugin(Plugin):
         
 
     def run(self):
+        # Estblish connection
         print("Preparing database for running Sysbench test...")
         self.client = ssh_connect(self.config)
+
+        # Prepare Database
         prepare_database(self.client, self.config)
         print("Running Sysbench test for Database performance...")
+
+        # Perform test for performance
         perform_sysbench_test(self.client, self.config)
         
+        # Transfer output file
         print("Transferring sysbench metrics file...")
         transfer_file_from_vm(self.client, 'sysbench_metrics.txt', './outputs/sysbench_metrics.txt')
 
