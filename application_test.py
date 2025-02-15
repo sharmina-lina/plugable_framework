@@ -101,7 +101,7 @@ def perform_redis_benchmark_test(client, config):
             print("Port-forwarding process was not initiated.")
     return output_file_path
 
-import pandas as pd
+
 
 def parse_benchmark_metrics(file_path):
     # Data structure to hold parsed data

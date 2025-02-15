@@ -1,5 +1,5 @@
 # plugins/plot_dashboard_plugin.py
-from plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard
+from plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard
 from plugins.plugin_manager import Plugin
 import matplotlib.pyplot as plt
 
@@ -14,8 +14,10 @@ class PlotDashboardPlugin(Plugin):
         plot_sysbench_dashboard()
         print("Plotting the apache benchmark(ab) dashboard...")
         plot_ab_dashboard()
-        print("Plotting the apache benchmark(ab) dashboard...")
+        print("Plotting the Redis of application dashboard...")
         plot_redis_dashboard()
+        print("Plotting the k6 load test dashboard...")
+        plot_k6_dashboard()
 
 
         
@@ -26,12 +28,15 @@ class PlotDashboardPlugin(Plugin):
         sysbench_img = plt.imread('./outputs/sysbench_dashboard.png')
         ab_img = plt.imread('./outputs/ab_dashboard.png')
         redis_img = plt.imread('./outputs/redis_dashboard.png')
+        k6_img = plt.imread('./outputs/k6_dashboard.png')
 
         axs[0, 0].imshow(sysbench_img)
         axs[0, 0].axis('off')  # Hide axes for better visualization
         axs[0, 0].set_title('Dashboard of Database Performance')
 
+        axs[0, 1].imshow(k6_img)
         axs[0, 1].axis('off')
+        axs[0, 1].set_title('Dashboard of Application load test')
 
         axs[1, 0].imshow(ab_img)
         axs[1, 0].axis('off')  # Hide axes for better visualization

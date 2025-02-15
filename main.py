@@ -19,6 +19,7 @@ def main():
         "load_balancer_plugin",
         "parse_ab_plugin",
         "application_testing_plugin",
+        "application_load_testing_plugin",
         "plot_dashboard_plugin"
         
     ]

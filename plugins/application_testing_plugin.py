@@ -32,13 +32,7 @@ class ApplicationTestingPlugin(Plugin):
         transfer_file_from_vm(self.client, 'redis_benchmark_metrics.txt', './outputs/redis_benchmark_result.txt')
 
         throughput_data, latency_data = parse_benchmark_metrics('./outputs/redis_benchmark_result.txt')
-        #create_visualizations(throughput_data, latency_data)
-        
-        
-        
-        
-
-        
+        #create_visualizations(throughput_data, latency_data)    
 
     def teardown(self):
         print("Tearing down application test...")

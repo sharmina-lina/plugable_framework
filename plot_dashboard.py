@@ -3,6 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import json
 
 def plot_sysbench_dashboard():
     # Load data from CSV files
@@ -99,3 +100,69 @@ def plot_redis_dashboard():
     plt.tight_layout()
     plt.savefig('./outputs/redis_dashboard.png')  # Save the figure to file
     #plt.show()  # Display the plots
+
+def plot_k6_dashboard():
+    # Load k6 metrics from the JSON file
+    k6_results_path = './outputs/k6_result.json'
+    
+    try:
+        # Parse the k6 results
+        with open(k6_results_path, 'r') as f:
+            k6_data = [json.loads(line) for line in f]
+        
+        # Extract relevant metrics
+        http_req_duration = []
+        http_reqs = []
+        iterations = []
+
+        for entry in k6_data:
+            if entry.get("metric") == "http_req_duration" and "data" in entry and "value" in entry["data"]:
+                http_req_duration.append(entry["data"]["value"])
+            elif entry.get("metric") == "http_reqs" and "data" in entry and "value" in entry["data"]:
+                http_reqs.append(entry["data"]["value"])
+            elif entry.get("metric") == "iterations" and "data" in entry and "value" in entry["data"]:
+                iterations.append(entry["data"]["value"])
+
+        # Calculate average HTTP request duration
+        http_req_duration_avg = sum(http_req_duration) / len(http_req_duration) if http_req_duration else 0
+
+        # Create DataFrames for visualization
+        throughput_df = pd.DataFrame({
+            'Test Run': ['Run 1'],  # Replace with actual test run labels if available
+            'Requests per Second': [sum(http_reqs)]
+        })
+
+        latency_df = pd.DataFrame({
+            'Percentile': ['Avg', 'Min', 'Max'],
+            'Latency (ms)': [
+                http_req_duration_avg,
+                min(http_req_duration) if http_req_duration else 0,
+                max(http_req_duration) if http_req_duration else 0
+            ]
+        })
+
+        # Create subplots
+        fig, axs = plt.subplots(1, 2, figsize=(15, 5))
+
+        # Throughput Plot (Bar chart)
+        throughput_df.plot(kind='bar', x='Test Run', y='Requests per Second', ax=axs[0], color='blue', legend=False)
+        axs[0].set_title('K6 Load Test Throughput')
+        axs[0].set_ylabel('Requests per Second (rps)')
+        axs[0].set_xlabel('Test Run')
+        axs[0].grid(axis='y')
+
+        # Latency Plot (Bar chart)
+        latency_df.plot(kind='bar', x='Percentile', y='Latency (ms)', ax=axs[1], color='orange', legend=False)
+        axs[1].set_title('K6 Load Test Latency Percentiles')
+        axs[1].set_ylabel('Latency (ms)')
+        axs[1].set_xlabel('Percentile')
+        axs[1].grid(axis='y')
+
+        plt.tight_layout()
+        plt.savefig('./outputs/k6_dashboard.png')  # Save the figure to file
+       # plt.show()  # Display the plots
+
+    except FileNotFoundError:
+        print(f"Error: File not found at {k6_results_path}")
+    except Exception as e:
+        print(f"Error plotting k6 dashboard: {e}")
