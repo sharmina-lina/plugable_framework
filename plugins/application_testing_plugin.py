@@ -1,5 +1,5 @@
 # plugins/application_testing_plugin.py
-from application_test import application_connect, perform_redis_benchmark_test,install_redis_benchmark, parse_benchmark_metrics, create_visualizations
+from application_test import application_connect, perform_redis_benchmark_test,install_redis_benchmark, parse_benchmark_metrics
 from file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
 

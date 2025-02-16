@@ -1,8 +1,7 @@
+#db_connect.py
 import mysql.connector
-#import psycopg2
 import sqlite3
 from mysql.connector import Error as MySQLError
-#from psycopg2 import OperationalError as PostgreSQLError
 from sqlite3 import Error as SQLiteError
 from pymongo import MongoClient
 import cx_Oracle

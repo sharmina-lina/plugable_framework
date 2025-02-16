@@ -1,4 +1,5 @@
 
+# main.py
 from plugins.plugin_manager import PluginManager
 from config_loader import load_encrypted_config
 def main():
@@ -12,12 +13,9 @@ def main():
     # Step 2: Define the plugin execution sequence
     plugin_sequence = [
        
-        "db_connect_plugin",
+        "db_test_plugin",
         #"ycsb_plugin",
-        "sysbench_test_plugin",
-        "parse_sysbench_plugin",
-        "load_balancer_plugin",
-        "parse_ab_plugin",
+        "loadbalancer_test_plugin",
         "application_testing_plugin",
         "application_load_testing_plugin",
         "plot_dashboard_plugin"
