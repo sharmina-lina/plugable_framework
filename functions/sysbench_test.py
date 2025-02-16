@@ -52,16 +52,18 @@ def prepare_database(client, config):
     db_pass = config['database']['password']
     db_host = config['database']['host']
     db_port = config['database']['port']
+    db_driver = config['database']['driver_name']
 
     # Construct the sysbench prepare command
+
     prepare_command = (
         f"sysbench /usr/share/sysbench/oltp_common.lua "
-        f"--db-driver=mysql "
-        f"--mysql-db={db_name} "
-        f"--mysql-user={db_user} "
-        f"--mysql-password={db_pass} "
-        f"--mysql-host={db_host} "
-        f"--mysql-port={db_port} "
+        f"--db-driver={db_driver} "
+        f"--{db_driver}-host={db_host} "
+        f"--{db_driver}-port={db_port} "
+        f"--{db_driver}-user={db_user} "
+        f"--{db_driver}-password={db_pass} "
+        f"--{db_driver}-db={db_name} "
         f"--tables=5 "
         f"--table-size=1000000 "
         f"prepare"
@@ -81,16 +83,18 @@ def perform_sysbench_test(client, config):
     db_port = config['database']['port']
     db_threads = config['database']['threads']
     db_duration = config['database']['duration']
+    db_driver = config['database']['driver_name']
 
     # Construct the sysbench test command
+
     sysbench_command = (
         f"sysbench /usr/share/sysbench/oltp_read_write.lua "
-        f"--db-driver=mysql "
-        f"--mysql-db={db_name} "
-        f"--mysql-user={db_user} "
-        f"--mysql-password={db_pass} "
-        f"--mysql-host={db_host} "
-        f"--mysql-port={db_port} "
+        f"--db-driver={db_driver} "
+        f"--{db_driver}-host={db_host} "
+        f"--{db_driver}-port={db_port} "
+        f"--{db_driver}-user={db_user} "
+        f"--{db_driver}-password={db_pass} "
+        f"--{db_driver}-db={db_name} "
         f"--tables=5 "
         f"--table-size=1000000 "
         f"--threads={db_threads} "

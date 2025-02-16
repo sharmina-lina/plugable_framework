@@ -17,6 +17,7 @@ class DbTestPlugin(Plugin):
         print("Setting up database connection for sysbench test...")
 
     def run(self):
+        """
         if self.connection:
             print("Already connected to the database. Skipping reconnection.")
             return True  # Connection is already established
@@ -29,6 +30,9 @@ class DbTestPlugin(Plugin):
         else:
             print("Failed to connect to the database. Exiting.")
             return False  # Stop the pipeline if critical step fails
+        
+        """
+        
         
         print("Preparing database for running Sysbench test...")
         self.client = ssh_connect(self.config)
@@ -60,5 +64,5 @@ class DbTestPlugin(Plugin):
 
     def teardown(self):
         print("Closing the database connection...")
-        if self.connection:
-            close_database_connection(self.connection)
+        #if self.connection:
+         #   close_database_connection(self.connection)

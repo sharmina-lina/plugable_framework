@@ -1,5 +1,5 @@
 Category,Min,Mean,StdDev,Median,Max
-Connect,0,0.0,0.2,0,3
-Processing,1,6.0,2.3,5,19
-Waiting,1,6.0,2.3,5,19
-Total,1,6.0,2.3,6,20
+Connect,0,0.0,0.3,0,6
+Processing,1,7.0,3.0,7,28
+Waiting,1,7.0,3.0,6,28
+Total,2,8.0,3.0,7,28
