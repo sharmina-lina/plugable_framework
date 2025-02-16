@@ -1,5 +1,5 @@
 # plugins/plot_dashboard_plugin.py
-from plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard
+from functions.plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard
 from plugins.plugin_manager import Plugin
 import matplotlib.pyplot as plt
 

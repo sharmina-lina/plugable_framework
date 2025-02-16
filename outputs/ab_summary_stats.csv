@@ -1,2 +1,2 @@
 server_software,server_hostname,server_port,document_path,document_length,concurrency_level,time_taken,complete_requests,failed_requests,total_transferred,html_transferred,requests_per_sec,time_per_request_mean,time_per_request_concurrent,transfer_rate
-Caddy,server,80.0,/,23.0,10.0,6.333,10000.0,0.0,2390000.0,230000.0,1578.91,6.333,0.633,368.51
+Caddy,server,80.0,/,23.0,10.0,6.465,10000.0,0.0,2390000.0,230000.0,1546.82,6.465,0.646,361.02

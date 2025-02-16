@@ -1,7 +1,7 @@
 # plugins/db_test_plugin.py
-from db_connect import connect_to_database, close_database_connection
-from sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output, ssh_connect
-from file_transfer import transfer_file_from_vm
+from functions.db_connect import connect_to_database, close_database_connection
+from functions.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output, ssh_connect
+from functions.file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
 from pandas import Series
 
