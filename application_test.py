@@ -44,30 +44,6 @@ def install_redis_benchmark(client,  config):
         print(f"Error checking or installing Redis Benchmark: {e}")
     
 
-
-def perform_redis_benchmark_test(client,config):
-    """
-    redis_command = (
-        f"redis-benchmark -h 127.0.0.1 -p 6379 -n 10000 -c 50 > redis_benchmark_metrics.txt"
-    )
-    
-    try:
-        # Execute the `redis-benchmark` command on the remote VM
-        print("Running Redis Benchmark test...")
-        stdin, stdout, stderr = client.exec_command(redis_command)
-        stdout.channel.recv_exit_status()  # Wait for the command to complete
-
-        # Print success message
-        print("Redis Benchmark test completed. Metrics are saved in 'redis_benchmark_metrics.txt'.")
-
-        
-
-    except Exception as e:
-        print(f"Error during Redis Benchmark test: {e}")
-
-    """
-
-
 def perform_redis_benchmark_test(client, config):
     redis_command = "redis-benchmark -h 127.0.0.1 -p 6379 -n 10000 -c 50 > redis_benchmark_metrics.txt"
     kubectl_command = "/usr/local/bin/kubectl port-forward svc/redis-cart 6379:6379 &"
@@ -138,18 +114,7 @@ def parse_benchmark_metrics(file_path):
 
     return throughput_data, latency_data
 
-def create_visualizations(throughput_data, latency_data):
-    # Plot throughput
-    throughput_df = pd.DataFrame(throughput_data, columns=['Throughput (rps)'])
-    fig1 = px.line(throughput_df, title='Redis Benchmark Throughput', labels={'index': 'Test Run', 'Throughput (rps)': 'Requests per Second'})
-    
-    # Plot latency percentiles
-    latency_df = pd.DataFrame(latency_data, columns=['Percentile', 'Latency (ms)'])
-    fig2 = px.line(latency_df, x='Percentile', y='Latency (ms)', title='Redis Benchmark Latency Percentiles')
 
-    # Show plots
-    fig1.show()
-    fig2.show()
 
 
     
