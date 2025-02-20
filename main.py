@@ -13,11 +13,11 @@ def main():
     # Step 2: Define the plugin execution sequence
     plugin_sequence = [
        
-        "db_test_plugin",
-        #"ycsb_plugin",
-        "loadbalancer_test_plugin",
-        "application_testing_plugin",
-        "application_load_testing_plugin",
+       # "db_test_plugin",
+        #"loadbalancer_test_plugin",
+        #"application_testing_plugin",
+        #"application_load_testing_plugin",
+        "online_testing_plugin",
         "plot_dashboard_plugin"
         
     ]

@@ -49,6 +49,7 @@ def plot_sysbench_dashboard():
     plt.tight_layout()
     plt.savefig('./outputs/sysbench_dashboard.png')
     #plt.show()
+    plt.close()
 
 def plot_ab_dashboard():
     # Load data from CSV files
@@ -76,6 +77,7 @@ def plot_ab_dashboard():
     plt.tight_layout()
     plt.savefig('./outputs/ab_dashboard.png')
     #plt.show()
+    plt.close()
 
 def plot_redis_dashboard():
     throughput_df = pd.read_csv('./outputs/throughput_redis_data.csv')
@@ -100,6 +102,7 @@ def plot_redis_dashboard():
     plt.tight_layout()
     plt.savefig('./outputs/redis_dashboard.png')  # Save the figure to file
     #plt.show()  # Display the plots
+    plt.close()
 
 def plot_k6_dashboard():
     # Load k6 metrics from the JSON file
@@ -161,8 +164,57 @@ def plot_k6_dashboard():
         plt.tight_layout()
         plt.savefig('./outputs/k6_dashboard.png')  # Save the figure to file
        # plt.show()  # Display the plots
+        plt.close()
 
     except FileNotFoundError:
         print(f"Error: File not found at {k6_results_path}")
     except Exception as e:
         print(f"Error plotting k6 dashboard: {e}")
+
+
+def plot_online_testing_dashboard():
+    """
+    Plot the online testing data (CPU usage, memory usage, disk I/O, network I/O).
+    """
+    # Load the online metrics from the CSV file
+    try:
+        import pandas as pd
+        metrics = pd.read_csv('./outputs/online_metrics.csv')
+    except FileNotFoundError:
+        print("Error: Online metrics file not found.")
+        return
+
+    # Extract scalar values from the DataFrame
+    cpu_usage = metrics['cpu_usage'].iloc[0]
+    memory_usage = metrics['memory_usage'].iloc[0]
+    disk_read_ops = metrics['disk_read_ops'].iloc[0]
+    disk_write_ops = metrics['disk_write_ops'].iloc[0]
+    bytes_received = metrics['bytes_received'].iloc[0]
+    bytes_transmitted = metrics['bytes_transmitted'].iloc[0]
+
+    # Create a figure with subplots
+    import matplotlib.pyplot as plt
+    fig, axs = plt.subplots(2, 2, figsize=(15, 10))
+
+    # Plot CPU usage
+    axs[0, 0].bar(['CPU Usage'], cpu_usage, color='blue')
+    axs[0, 0].set_title('CPU Usage (%)')
+    axs[0, 0].set_ylim(0, 100)
+
+    # Plot memory usage
+    axs[0, 1].bar(['Memory Usage'], memory_usage, color='green')
+    axs[0, 1].set_title('Memory Usage (%)')
+    axs[0, 1].set_ylim(0, 100)
+
+    # Plot disk I/O
+    axs[1, 0].bar(['Disk Read', 'Disk Write'], [disk_read_ops, disk_write_ops], color='orange')
+    axs[1, 0].set_title('Disk I/O (Operations per Second)')
+
+    # Plot network I/O
+    axs[1, 1].bar(['Bytes Received', 'Bytes Transmitted'], [bytes_received, bytes_transmitted], color='red')
+    axs[1, 1].set_title('Network I/O (Bytes)')
+
+    # Adjust layout and save the plot
+    plt.tight_layout()
+    plt.savefig('./outputs/online_testing_dashboard.png')
+    plt.close()
