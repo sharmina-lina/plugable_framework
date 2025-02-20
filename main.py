@@ -11,16 +11,9 @@ def main():
         return
     
     # Step 2: Define the plugin execution sequence
-    plugin_sequence = [
-       
-       # "db_test_plugin",
-        #"loadbalancer_test_plugin",
-        #"application_testing_plugin",
-        #"application_load_testing_plugin",
-        "online_testing_plugin",
-        "plot_dashboard_plugin"
-        
-    ]
+
+    plugin_sequence = config.get("plugin_sequence", [])
+    
 
     # Step 3: Initialize the PluginManager with the loaded configuration and sequence
     plugin_manager = PluginManager(config=config, plugin_sequence=plugin_sequence)
