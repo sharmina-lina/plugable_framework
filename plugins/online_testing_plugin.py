@@ -1,7 +1,7 @@
 # plugins/online_testing_plugin.py
 from plugins.plugin_manager import Plugin
-from functions.application_load_test import application_connect, perform_k6_test  # Assuming you have an SSH utility
-from functions.monitoring import collect_system_metrics  # Custom function to collect metrics
+from modules.application_load_test import application_connect, perform_k6_test  # Assuming you have an SSH utility
+from modules.monitoring import collect_system_metrics  # Custom function to collect metrics
 import pandas as pd
 import time
 from prometheus_client import Gauge
@@ -80,4 +80,8 @@ class OnlineTestingPlugin(Plugin):
         else:
             print("No metrics collected. Skipping file save.")
 
+    def teardown(self):
+        print("Tearing down Online system testing ...")
+        if self.client:
+            self.client.close()
     

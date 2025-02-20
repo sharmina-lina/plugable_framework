@@ -1,4 +1,4 @@
-# functions/monitoring.py
+# modules/monitoring.py
 def collect_system_metrics(client):
     """
     Collect system metrics (CPU, memory, disk I/O, network I/O) from the remote server.

@@ -1,4 +1,4 @@
-#db_connect.py
+## modules/db_connect.py
 import mysql.connector
 import sqlite3
 from mysql.connector import Error as MySQLError

@@ -1,4 +1,4 @@
-#file_transfer.py
+#modules/file_transfer.py
 from scp import SCPClient
 import os
 

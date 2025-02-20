@@ -1,7 +1,7 @@
 # plugins/loadbalancer_test_plugin.py
-from functions.sysbench_test import ssh_connect
-from functions.loadbalancer_test import perform_ab_test, install_ab, parse_ab_output
-from functions.file_transfer import transfer_file_from_vm
+from modules.sysbench_test import ssh_connect
+from modules.loadbalancer_test import perform_ab_test, install_ab, parse_ab_output
+from modules.file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
 from pandas import DataFrame
 

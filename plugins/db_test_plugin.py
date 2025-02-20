@@ -1,7 +1,7 @@
 # plugins/db_test_plugin.py
-from functions.db_connect import connect_to_database, close_database_connection
-from functions.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output, ssh_connect
-from functions.file_transfer import transfer_file_from_vm
+from modules.db_connect import connect_to_database, close_database_connection
+from modules.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output, ssh_connect
+from modules.file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
 from pandas import Series
 
@@ -17,22 +17,6 @@ class DbTestPlugin(Plugin):
         print("Setting up database connection for sysbench test...")
 
     def run(self):
-        """
-        if self.connection:
-            print("Already connected to the database. Skipping reconnection.")
-            return True  # Connection is already established
-        
-        print("Connecting to the database...")
-        self.connection = connect_to_database(self.db_config)
-
-        if self.connection:
-            print("Database connection successful.")
-        else:
-            print("Failed to connect to the database. Exiting.")
-            return False  # Stop the pipeline if critical step fails
-        
-        """
-        
         
         print("Preparing database for running Sysbench test...")
         self.client = ssh_connect(self.config)

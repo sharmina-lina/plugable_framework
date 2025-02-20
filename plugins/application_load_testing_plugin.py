@@ -1,6 +1,6 @@
 # plugins/application_load_testing_plugin.py
-from functions.application_load_test import application_connect, install_k6, perform_k6_test, parse_k6_results, visualize_k6_results
-from functions.file_transfer import transfer_file_from_vm, transfer_file_to_vm
+from modules.application_load_test import application_connect, install_k6, perform_k6_test, parse_k6_results, visualize_k6_results
+from modules.file_transfer import transfer_file_from_vm, transfer_file_to_vm
 from plugins.plugin_manager import Plugin
 import json
 

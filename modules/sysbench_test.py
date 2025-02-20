@@ -1,7 +1,7 @@
-# Sysbench_test.py
+# modules/Sysbench_test.py
 import paramiko
 import yaml
-from functions.sysbench_install import ssh_connect
+from modules.sysbench_install import ssh_connect
 import re
 import pandas as pd
 

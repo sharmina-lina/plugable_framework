@@ -1,4 +1,4 @@
-# plot_dashboard.py
+# modules/plot_dashboard.py
 
 import pandas as pd
 import matplotlib.pyplot as plt

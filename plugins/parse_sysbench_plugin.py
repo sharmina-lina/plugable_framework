@@ -1,5 +1,5 @@
 # plugins/parse_sysbench_plugin.py
-from parse_sysbench import parse_sysbench_output
+from modules.sysbench_test import parse_sysbench_output
 from pandas import Series
 from plugins.plugin_manager import Plugin
 
@@ -21,3 +21,8 @@ class ParseSysbenchPlugin(Plugin):
             Series(fairness_stats).to_csv('./outputs/sysbench_fairness_stats.csv')
         else:
             print("Parsed data is empty. Check the input file or parsing logic.")
+
+    def teardown(self):
+        print("Tearing down sysbench test...")
+        if self.client:
+            self.client.close()
