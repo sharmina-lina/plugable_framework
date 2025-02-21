@@ -2,6 +2,7 @@
 from modules.plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard, plot_online_testing_dashboard
 from plugins.plugin_manager import Plugin
 import matplotlib.pyplot as plt
+import time
 
 class PlotDashboardPlugin(Plugin):
     def __init__(self, config):
@@ -55,7 +56,10 @@ class PlotDashboardPlugin(Plugin):
         axs[2, 0].set_title('Dashboard of Online system Performance')
 
         plt.tight_layout()
-        plt.show()
+        plt.savefig('./outputs/all_dashboard_together.png')
+        plt.show(block=False)
+        plt.pause(15)
+        plt.close()
 
     def teardown(self):
         print("Tearing down plot dashboard...")

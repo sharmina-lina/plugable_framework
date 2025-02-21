@@ -4,7 +4,7 @@ from modules.application_load_test import application_connect, perform_k6_test  
 from modules.monitoring import collect_system_metrics  # Custom function to collect metrics
 import pandas as pd
 import time
-from prometheus_client import Gauge
+from prometheus_client import Gauge, start_http_server
 
 
 class OnlineTestingPlugin(Plugin):
@@ -32,6 +32,10 @@ class OnlineTestingPlugin(Plugin):
         else:
             print("Failed to establish SSH connection. Exiting.")
             return False
+        
+        # Start Prometheus HTTP server on port 9000
+        start_http_server(9000)
+        print("Prometheus metrics server started on port 9000.")
 
     def run(self):
         """
@@ -39,24 +43,38 @@ class OnlineTestingPlugin(Plugin):
         """
         print("Running online testing...")
 
-        # Collect system metrics (CPU, memory, etc.)
-        print("Collecting system metrics...")
-        metrics = collect_system_metrics(self.client)
+        try:
+            while True:  # Run in a continuous loop
+                try:
+       
 
-        # Save metrics to a file (optional)
-        self._save_metrics_to_file(metrics)
+                    # Collect system metrics (CPU, memory, etc.)
+                    print("Collecting system metrics...")
+                    metrics = collect_system_metrics(self.client)
 
-        # Update Prometheus metrics
-        self.cpu_usage_gauge.set(metrics['cpu_usage'])
-        self.memory_usage_gauge.set(metrics['memory_usage'])
-        self.disk_read_gauge.set(metrics['disk_read_ops'])
-        self.disk_write_gauge.set(metrics['disk_write_ops'])
-        self.network_rx_gauge.set(metrics['bytes_received'])
-        self.network_tx_gauge.set(metrics['bytes_transmitted'])
+                    # Save metrics to a file (optional)
+                    self._save_metrics_to_file(metrics)
 
-        print("Metrics updated in Prometheus.")
+                    # Update Prometheus metrics
+                    self.cpu_usage_gauge.set(metrics['cpu_usage'])
+                    self.memory_usage_gauge.set(metrics['memory_usage'])
+                    self.disk_read_gauge.set(metrics['disk_read_ops'])
+                    self.disk_write_gauge.set(metrics['disk_write_ops'])
+                    self.network_rx_gauge.set(metrics['bytes_received'])
+                    self.network_tx_gauge.set(metrics['bytes_transmitted'])
 
+                    print("Metrics updated in Prometheus.")
+
+                except Exception as e:
+                    print(f"Error updating metrics: {e}")
         
+                time.sleep(15)
+
+        except KeyboardInterrupt:
+            print("\nKeyboard interrupt detected. Stopping the plugin...")
+        finally:
+            # Ensure resources are cleaned up
+            self.teardown()
 
         return True
 
