@@ -4,4 +4,4 @@ global:
 scrape_configs:
   - job_name: 'framework_metrics'
     static_configs:
-      - targets: ['192.168.1.113:9000']  # Replace with your framework's IP and port
+      - targets: ['192.168.1.83:9000']  # Replace with your framework's IP and port

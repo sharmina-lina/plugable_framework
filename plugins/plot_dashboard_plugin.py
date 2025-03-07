@@ -25,7 +25,7 @@ class PlotDashboardPlugin(Plugin):
 
         
         # Display all three images using matplotlib's imshow in a single figure
-        fig, axs = plt.subplots(3, 2, figsize=(20, 15))  # Adjusted for three images
+        fig, axs = plt.subplots(2, 2, figsize=(20, 15))  # Adjusted for three images
 
         # Load and display the saved images
         sysbench_img = plt.imread('./outputs/sysbench_dashboard.png')
@@ -51,9 +51,7 @@ class PlotDashboardPlugin(Plugin):
         axs[1, 1].axis('off')  # Hide axes for better visualization
         axs[1, 1].set_title('Dashboard of Redis Performance')
     
-        axs[2, 0].imshow(online_testing_img)
-        axs[2, 0].axis('off')  # Hide axes for better visualization
-        axs[2, 0].set_title('Dashboard of Online system Performance')
+        
 
         plt.tight_layout()
         plt.savefig('./outputs/all_dashboard_together.png')

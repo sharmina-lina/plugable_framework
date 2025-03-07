@@ -1,6 +1,7 @@
 # plugins/db_test_plugin.py
 from modules.db_connect import connect_to_database, close_database_connection
-from modules.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output, ssh_connect
+from modules.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output
+from modules.sysbench_install import ssh_connect, install_sysbench
 from modules.file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
 from pandas import Series
@@ -20,7 +21,12 @@ class DbTestPlugin(Plugin):
         
         print("Preparing database for running Sysbench test...")
         self.client = ssh_connect(self.config)
+        
+        # Check Sysbench installed or not
+        install_sysbench(self.client, self.config)
+
         # Prepare Database
+        print("Running Sysbench for preparaing database...")
         prepare_database(self.client, self.config)
         
         print("Running Sysbench test for Database performance...")

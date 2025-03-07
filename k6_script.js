@@ -1,24 +1,3 @@
-// k6_script.js
-/*
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-
-export default function () {
-    // Define the URL of the frontend service
-    let url = 'http://localhost:8080';
-
-    // Send a GET request to the frontend service
-    let res = http.get(url);
-
-    // Check if the response status is 200
-    check(res, {
-        'is status 200': (r) => r.status === 200,
-    });
-
-    // Sleep for 1 second between iterations
-    sleep(1);
-} */
-
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween } from 'k6/utils';
@@ -32,7 +11,7 @@ export let options = {
 };
 
 export default function () {
-    let url = 'http://localhost:8080/cart';
+    let url = 'http://localhost:8080';
     let payload = JSON.stringify({
         id: randomIntBetween(1, 100),
         value: `test_value_${randomIntBetween(1, 100)}`,
