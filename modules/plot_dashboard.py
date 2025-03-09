@@ -47,6 +47,7 @@ def plot_sysbench_dashboard():
     axs[1,1].grid(axis='y')
 
     plt.tight_layout()
+    plt.savefig('./outputs/sysbench_dashboard.eps', format='eps', bbox_inches='tight')
     plt.savefig('./outputs/sysbench_dashboard.png')
     #plt.show()
     plt.close()
@@ -76,6 +77,7 @@ def plot_ab_dashboard():
 
     plt.tight_layout()
     plt.savefig('./outputs/ab_dashboard.png')
+    plt.savefig('./outputs/ab_dashboard.eps',format='eps', bbox_inches='tight')
     #plt.show()
     plt.close()
 
@@ -100,7 +102,8 @@ def plot_redis_dashboard():
     axs[1].grid(axis='y')
 
     plt.tight_layout()
-    plt.savefig('./outputs/redis_dashboard.png')  # Save the figure to file
+    plt.savefig('./outputs/redis_dashboard.png')
+    plt.savefig('./outputs/redis_dashboard.eps',format='eps', bbox_inches='tight')  # Save the figure to file
     #plt.show()  # Display the plots
     plt.close()
 
@@ -163,6 +166,7 @@ def plot_k6_dashboard():
 
         plt.tight_layout()
         plt.savefig('./outputs/k6_dashboard.png')  # Save the figure to file
+        plt.savefig('./outputs/k6_dashboard.eps',format='eps', bbox_inches='tight')
        # plt.show()  # Display the plots
         plt.close()
 
@@ -217,4 +221,5 @@ def plot_online_testing_dashboard():
     # Adjust layout and save the plot
     plt.tight_layout()
     plt.savefig('./outputs/online_testing_dashboard.png')
+    plt.savefig('./outputs/online_testing_dashboard.eps',format='eps', bbox_inches='tight')
     plt.close()

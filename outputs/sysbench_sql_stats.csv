@@ -1,6 +1,6 @@
 ,0
-Transactions,1232.0
-Transactions/sec,19.9
-Total Queries,24640.0
-Queries/sec,398.05
+Transactions,1209.0
+Transactions/sec,20.03
+Total Queries,24180.0
+Queries/sec,400.55
 Ignored Errors,0.0
