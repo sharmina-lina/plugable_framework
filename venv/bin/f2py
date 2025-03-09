@@ -1,4 +1,4 @@
-#!/Users/sharminalina/Desktop/OsloMet/Thesis/thesisWork/connection/venv/bin/python3.12
+#!/home/ubuntu/plugable_framework/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

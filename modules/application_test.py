@@ -14,7 +14,7 @@ import plotly.express as px
 def application_connect(config):
     try:
         ssh_key_path = config['application']['key_path']
-        key = paramiko.RSAKey.from_private_key_file(ssh_key_path)
+        key = paramiko.Ed25519Key.from_private_key_file(ssh_key_path)
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(config['application']['host'], username=config['application']['username'], pkey=key)

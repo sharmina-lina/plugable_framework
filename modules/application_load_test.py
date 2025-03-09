@@ -10,7 +10,7 @@ import os
 def application_connect(config):
     try:
         ssh_key_path = config['application']['key_path']
-        key = paramiko.RSAKey.from_private_key_file(ssh_key_path)
+        key = paramiko.Ed25519Key.from_private_key_file(ssh_key_path)
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(config['application']['host'], username=config['application']['username'], pkey=key)
@@ -136,4 +136,37 @@ def visualize_k6_results(http_req_duration_metrics):
     # Create a bar chart
     fig = px.bar(df, x='Metric', y='Value', title='HTTP Request Duration Metrics')
     fig.show()
-    
+def parse_k6_results_online(json_file_path):
+    """
+    Parse the K6 results from the JSON file and extract relevant metrics.
+    """
+    http_reqs_total = 0
+    http_req_duration_values = []
+
+    try:
+        with open(json_file_path, 'r') as f:
+            for line in f:
+                data = json.loads(line.strip())
+
+                # Extract HTTP requests count
+                if data.get("metric") == "http_reqs" and data.get("type") == "Point":
+                    http_reqs_total += data["data"]["value"]
+
+                # Extract HTTP request duration values
+                if data.get("metric") == "http_req_duration" and data.get("type") == "Point":
+                    http_req_duration_values.append(data["data"]["value"])
+
+        # Calculate average, min and max HTTP request duration
+        http_req_duration_avg = sum(http_req_duration_values) / len(http_req_duration_values) if http_req_duration_values else 0
+        http_req_min = min(http_req_duration_values) if http_req_duration_values  else 0
+        http_req_max = max(http_req_duration_values) if http_req_duration_values  else 0
+
+        # Total iterations (same as total HTTP requests in this case)
+        iterations_total = http_reqs_total
+
+        print(f"Parsed K6 metrics - HTTP Reqs: {http_reqs_total},Min Duration: {http_req_min}, Max Duration: {http_req_max}, Avg Duration: {http_req_duration_avg}, Iterations: {iterations_total}")
+        return http_req_duration_avg, http_req_min, http_req_max, http_reqs_total, iterations_total  # Return numeric values
+
+    except Exception as e:
+        print(f"Error parsing K6 results: {e}")
+        return 0, 0, 0, 0, i    

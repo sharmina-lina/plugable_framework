@@ -8,7 +8,7 @@ import yaml
 def ssh_connect(config):
     try:
         ssh_key_path = config['ssh']['key_path']
-        key = paramiko.RSAKey.from_private_key_file(ssh_key_path)
+        key = paramiko.Ed25519Key.from_private_key_file(ssh_key_path)
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(config['ssh']['host'], username=config['ssh']['username'], pkey=key)

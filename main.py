@@ -4,7 +4,7 @@ from plugins.plugin_manager import PluginManager
 from config_loader import load_encrypted_config
 def main():
     # Step 1: Load the encrypted config.yaml file using Ansible Vault
-    config = load_encrypted_config(vault_file="config.yaml", vault_password_file="/Users/sharminalina/desktop/oslomet/thesis/vault_pass.txt")
+    config = load_encrypted_config(vault_file="config.yaml", vault_password_file="/home/ubuntu/vault_pass.txt")
     
     if not config:
         print("Error loading config. Exiting.")
