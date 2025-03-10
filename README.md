@@ -1,13 +1,13 @@
 # plugable_framework
-#Plugable Framework Setup Guide
+# Plugable Framework Setup Guide
 
-##1. Login to the VM
+## 1. Login to the VM
 
-###Ensure you have access to your VM and log in via SSH.
+### Ensure you have access to your VM and log in via SSH.
 
-'ssh ubuntu@your-vm-ip'
+```ssh ubuntu@your-vm-ip```
 
-##2. Add Server Names to Known Hosts
+## 2. Add Server Names to Known Hosts
 
 ###Edit the /etc/hosts file to add the following server names:
 
