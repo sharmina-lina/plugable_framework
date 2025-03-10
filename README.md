@@ -1,17 +1,17 @@
 # plugable_framework
-Plugable Framework Setup Guide
+#Plugable Framework Setup Guide
 
-1. Login to the VM
+##1. Login to the VM
 
-Ensure you have access to your VM and log in via SSH.
+###Ensure you have access to your VM and log in via SSH.
 
-ssh ubuntu@your-vm-ip
+'ssh ubuntu@your-vm-ip'
 
-2. Add Server Names to Known Hosts
+##2. Add Server Names to Known Hosts
 
-Edit the /etc/hosts file to add the following server names:
+###Edit the /etc/hosts file to add the following server names:
 
-sudo vi /etc/hosts
+'sudo vi /etc/hosts'
 
 Add these lines:
 
@@ -20,13 +20,13 @@ Add these lines:
 
 Save and exit the file.
 
-3. Establish Connection with Cloud System Server
+##3. Establish Connection with Cloud System Server
 
 If you do not have an SSH key, generate one using the following command:
 
 ssh-keygen
 
-4. Clone the Git Repository
+##4. Clone the Git Repository
 
 If your private key is in /home/ubuntu/.ssh/id_ed25519, clone v2:
 
@@ -36,29 +36,29 @@ If your private key is in /home/ubuntu/.ssh/id_rsa, clone v1:
 
 git clone --branch v1 --single-branch https://github.com/sharmina-lina/plugable_framework.git
 
-5. Navigate to the Project Directory
+##5. Navigate to the Project Directory
 
 cd plugable_framework
 
-6. Remove Existing Virtual Environment
+##6. Remove Existing Virtual Environment
 
 sudo rm -rf venv
 
-7. Create a New Virtual Environment
+##7. Create a New Virtual Environment
 
 sudo apt-get update
 sudo apt install python3.12-venv  # Or use sudo apt install python3-venv
 python3 -m venv venv
 
-8. Activate the Virtual Environment
+##8. Activate the Virtual Environment
 
 source venv/bin/activate
 
-9. Install Dependencies
+##9. Install Dependencies
 
 pip install -r requirements.txt
 
-10. (Optional) Configure and Run Prometheus & Grafana
+##10. (Optional) Configure and Run Prometheus & Grafana
 
 Configure Prometheus
 
@@ -88,7 +88,7 @@ sudo docker run -d --name=grafana \
   -p 3000:3000 \
   grafana/grafana
 
-11. Run the Framework
+##11. Run the Framework
 
 python3 main.py
 
