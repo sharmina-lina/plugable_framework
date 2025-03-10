@@ -30,7 +30,9 @@ If you do not have an SSH key, generate one using the following command:
 
 If your private key is in /home/ubuntu/.ssh/id_ed25519, clone v2:
 
-```git clone --branch v2 --single-branch https://github.com/sharmina-lina/plugable_framework.git```
+```
+git clone --branch v2 --single-branch https://github.com/sharmina-lina/plugable_framework.git
+```
 
 If your private key is in /home/ubuntu/.ssh/id_rsa, clone v1:
 ```
