@@ -63,22 +63,22 @@ pip install -r requirements.txt
 Configure Prometheus
 
 Navigate to the Prometheus directory:
-
+```
 cd prometheus
-
+```
 Edit the prometheus.yml file to add the IP of the machine.
 
 Install Docker
-
+```
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-
+```
 Run Prometheus and Grafana Containers
-
+```
 sudo docker run -d --name=prometheus \
   -p 9090:9090 \
   -v $(pwd)/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
@@ -87,11 +87,11 @@ sudo docker run -d --name=prometheus \
 sudo docker run -d --name=grafana \
   -p 3000:3000 \
   grafana/grafana
-
-##11. Run the Framework
-
+```
+## 11. Run the Framework
+```
 python3 main.py
-
+```
 Your plugable framework is now set up and ready to use!
 
 
