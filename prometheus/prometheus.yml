@@ -4,9 +4,5 @@ global:
 scrape_configs:
   - job_name: 'framework_metrics'
     static_configs:
-      - targets: ['192.168.32.85:9000']  # Replace with your framework's IP and port
+      - targets: ['10.196.241.39:9000']  # Replace with your framework's IP and port
 
-  - job_name: 'application_load_metrics'
-    honor_labels: true  # Preserve the original job and instance labels
-    static_configs:
-      - targets: ['192.168.32.85:9091']
