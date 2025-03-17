@@ -32,7 +32,7 @@ class PlotDashboardPlugin(Plugin):
         ab_img = plt.imread('./outputs/ab_dashboard.png')
         redis_img = plt.imread('./outputs/redis_dashboard.png')
         k6_img = plt.imread('./outputs/k6_dashboard.png')
-        online_testing_img = plt.imread('./outputs/online_testing_dashboard.png')
+        #online_testing_img = plt.imread('./outputs/online_testing_dashboard.png')
 
         axs[0, 0].imshow(sysbench_img)
         axs[0, 0].axis('off')  # Hide axes for better visualization

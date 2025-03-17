@@ -23,7 +23,7 @@ class DbTestPlugin(Plugin):
         self.client = ssh_connect(self.config)
         
         # Check Sysbench installed or not
-        install_sysbench(self.client, self.config)
+        #install_sysbench(self.client, self.config)
 
         # Prepare Database
         print("Running Sysbench for preparaing database...")
