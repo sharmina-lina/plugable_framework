@@ -1,2 +1,2 @@
 server_software,server_hostname,server_port,document_path,document_length,concurrency_level,time_taken,complete_requests,failed_requests,total_transferred,html_transferred,requests_per_sec,time_per_request_mean,time_per_request_concurrent,transfer_rate
-nginx/1.27.4,server,80.0,/,23.0,13.0,7.709,12000.0,0.0,3180000.0,276000.0,1556.58,8.352,0.642,402.83
+nginx/1.27.4,server,80.0,/,23.0,13.0,7.79,12000.0,0.0,3180000.0,276000.0,1540.44,8.439,0.649,398.65

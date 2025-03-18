@@ -10,7 +10,7 @@ def plot_sysbench_dashboard():
     df = pd.read_csv('./outputs/sysbench_intermediate.csv')
     latency = pd.read_csv('./outputs/sysbench_latency_stats.csv', index_col=0).squeeze()
     fairness = pd.read_csv('./outputs/sysbench_fairness_stats.csv', index_col=0).squeeze()
-
+    
     # Create subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 10))
 
@@ -47,9 +47,52 @@ def plot_sysbench_dashboard():
     axs[1,1].grid(axis='y')
 
     plt.tight_layout()
+    plt.savefig('./outputs/sysbench_dashboard.eps', format='eps', bbox_inches='tight')
     plt.savefig('./outputs/sysbench_dashboard.png')
     #plt.show()
     plt.close()
+    
+    
+    # Create figures for each plot separately
+    plt.figure(figsize=(7, 5))
+    sns.lineplot(data=df, x='Time (s)', y='TPS', marker='o')
+    plt.title('Transactions Per Second (TPS) Over Time')
+    plt.xlabel('Time (seconds)')
+    plt.ylabel('TPS')
+    plt.grid(True)
+    plt.savefig('./outputs/tps_over_time.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    plt.figure(figsize=(7, 5))
+    sns.lineplot(data=df, x='Time (s)', y='QPS', marker='o', label='Total QPS')
+    sns.lineplot(data=df, x='Time (s)', y='Read QPS', marker='o', label='Read QPS')
+    sns.lineplot(data=df, x='Time (s)', y='Write QPS', marker='o', label='Write QPS')
+    sns.lineplot(data=df, x='Time (s)', y='Other QPS', marker='o', label='Other QPS')
+    plt.title('Queries Per Second (QPS) Over Time')
+    plt.xlabel('Time (seconds)')
+    plt.ylabel('QPS')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig('./outputs/qps_over_time.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    plt.figure(figsize=(7, 5))
+    latency.drop('Sum (ms)').plot(kind='bar', color=['blue', 'green', 'red', 'purple'])
+    plt.title('Latency Metrics (ms)')
+    plt.ylabel('Latency (ms)')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/latency_metrics.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    plt.figure(figsize=(7, 5))
+    fairness.plot(kind='bar', color=['orange', 'cyan'])
+    plt.title('Thread Fairness Metrics')
+    plt.ylabel('Value')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/thread_fairness.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    
 
 def plot_ab_dashboard():
     # Load data from CSV files
@@ -76,12 +119,40 @@ def plot_ab_dashboard():
 
     plt.tight_layout()
     plt.savefig('./outputs/ab_dashboard.png')
+    plt.savefig('./outputs/ab_dashboard.eps',format='eps', bbox_inches='tight')
     #plt.show()
+    plt.close()
+
+    # Connection Times Graph
+    plt.figure(figsize=(7, 5))
+    connection_times.plot(kind='bar', color=['blue', 'green', 'red', 'purple'])
+    plt.title('Connection Times (ms)')
+    plt.ylabel('Time (ms)')
+    plt.xlabel('Category')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/connection_times.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    # Percentiles Graph
+    plt.figure(figsize=(7, 5))
+    percentiles.plot(kind='bar', x='Percentile', y='Time (ms)', color='orange')
+    plt.title('Latency Percentiles')
+    plt.ylabel('Time (ms)')
+    plt.xlabel('Percentile')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/latency_percentiles.eps', format='eps', bbox_inches='tight')
     plt.close()
 
 def plot_redis_dashboard():
     throughput_df = pd.read_csv('./outputs/throughput_redis_data.csv')
     latency_df = pd.read_csv('./outputs/latency_redis_data.csv')
+
+    if throughput_df.empty or not throughput_df.select_dtypes(include=['number']).any().any():
+        print("No numeric data to plot for throughput.")
+        return
+    if latency_df.empty or not latency_df.select_dtypes(include=['number']).any().any():
+        print("No numeric data to plot for latency.")
+        return
     # Create subplots
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
 
@@ -100,61 +171,73 @@ def plot_redis_dashboard():
     axs[1].grid(axis='y')
 
     plt.tight_layout()
-    plt.savefig('./outputs/redis_dashboard.png')  # Save the figure to file
+    plt.savefig('./outputs/redis_dashboard.png')
+    plt.savefig('./outputs/redis_dashboard.eps',format='eps', bbox_inches='tight')  # Save the figure to file
     #plt.show()  # Display the plots
     plt.close()
 
+    # Throughput Plot
+    plt.figure(figsize=(7, 5))
+    throughput_df.plot(kind='bar', color='blue', legend=False)
+    plt.title('Redis Benchmark Throughput')
+    plt.ylabel('Requests per Second (rps)')
+    plt.xlabel('Test Run')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/redis_throughput.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
+    # Latency Plot
+    plt.figure(figsize=(7, 5))
+    latency_df.plot(kind='bar', x='Percentile', y='Latency (ms)', color='orange', legend=False)
+    plt.title('Redis Benchmark Latency Percentiles')
+    plt.ylabel('Latency (ms)')
+    plt.xlabel('Percentile')
+    plt.grid(axis='y')
+    plt.savefig('./outputs/redis_latency_percentiles.eps', format='eps', bbox_inches='tight')
+    plt.close()
+
 def plot_k6_dashboard():
-    # Load k6 metrics from the JSON file
-    k6_results_path = './outputs/k6_result.json'
+
     
     try:
-        # Parse the k6 results
-        with open(k6_results_path, 'r') as f:
-            k6_data = [json.loads(line) for line in f]
-        
+        # Load CSV files
+        http_req_duration_df = pd.read_csv('./outputs/k6_http_req_duration.csv')
+        http_reqs_df = pd.read_csv('./outputs/k6_http_reqs.csv')
+        iterations_df = pd.read_csv('./outputs/k6_iterations.csv')
+
         # Extract relevant metrics
-        http_req_duration = []
-        http_reqs = []
-        iterations = []
+        if not http_req_duration_df.empty:
+            http_req_duration_avg = http_req_duration_df.mean().values[0]  # Average duration
+            http_req_duration_min = http_req_duration_df.min().values[0]   # Min duration
+            http_req_duration_max = http_req_duration_df.max().values[0]   # Max duration
+        else:
+            http_req_duration_avg, http_req_duration_min, http_req_duration_max = 0, 0, 0
 
-        for entry in k6_data:
-            if entry.get("metric") == "http_req_duration" and "data" in entry and "value" in entry["data"]:
-                http_req_duration.append(entry["data"]["value"])
-            elif entry.get("metric") == "http_reqs" and "data" in entry and "value" in entry["data"]:
-                http_reqs.append(entry["data"]["value"])
-            elif entry.get("metric") == "iterations" and "data" in entry and "value" in entry["data"]:
-                iterations.append(entry["data"]["value"])
-
-        # Calculate average HTTP request duration
-        http_req_duration_avg = sum(http_req_duration) / len(http_req_duration) if http_req_duration else 0
+        total_http_reqs = http_reqs_df.sum().values[0] if not http_reqs_df.empty else 0
+        total_iterations = iterations_df.sum().values[0] if not iterations_df.empty else 0
 
         # Create DataFrames for visualization
         throughput_df = pd.DataFrame({
-            'Test Run': ['Run 1'],  # Replace with actual test run labels if available
-            'Requests per Second': [sum(http_reqs)]
+            'Test Run': ['Run 1'],  # Adjust if multiple runs exist
+            'Requests per Second': [total_http_reqs]
         })
 
         latency_df = pd.DataFrame({
             'Percentile': ['Avg', 'Min', 'Max'],
-            'Latency (ms)': [
-                http_req_duration_avg,
-                min(http_req_duration) if http_req_duration else 0,
-                max(http_req_duration) if http_req_duration else 0
-            ]
+            'Latency (ms)': [http_req_duration_avg, http_req_duration_min, http_req_duration_max]
         })
 
         # Create subplots
         fig, axs = plt.subplots(1, 2, figsize=(15, 5))
 
-        # Throughput Plot (Bar chart)
+        # Throughput Plot
         throughput_df.plot(kind='bar', x='Test Run', y='Requests per Second', ax=axs[0], color='blue', legend=False)
         axs[0].set_title('K6 Load Test Throughput')
         axs[0].set_ylabel('Requests per Second (rps)')
         axs[0].set_xlabel('Test Run')
         axs[0].grid(axis='y')
 
-        # Latency Plot (Bar chart)
+        # Latency Plot
         latency_df.plot(kind='bar', x='Percentile', y='Latency (ms)', ax=axs[1], color='orange', legend=False)
         axs[1].set_title('K6 Load Test Latency Percentiles')
         axs[1].set_ylabel('Latency (ms)')
@@ -162,15 +245,38 @@ def plot_k6_dashboard():
         axs[1].grid(axis='y')
 
         plt.tight_layout()
-        plt.savefig('./outputs/k6_dashboard.png')  # Save the figure to file
-       # plt.show()  # Display the plots
+        plt.savefig('./outputs/k6_dashboard.png')  # Save the figure
+        plt.savefig('./outputs/k6_dashboard.eps', format='eps', bbox_inches='tight')
         plt.close()
 
-    except FileNotFoundError:
-        print(f"Error: File not found at {k6_results_path}")
-    except Exception as e:
-        print(f"Error plotting k6 dashboard: {e}")
+        # Individual Plots
+        # Throughput Plot
+        plt.figure(figsize=(7, 5))
+        throughput_df.plot(kind='bar', x='Test Run', y='Requests per Second', color='blue', legend=False)
+        plt.title('K6 Load Test Throughput')
+        plt.ylabel('Requests per Second (rps)')
+        plt.xlabel('Test Run')
+        plt.grid(axis='y')
+        plt.savefig('./outputs/k6_throughput.eps', format='eps', bbox_inches='tight')
+        plt.close()
 
+        # Latency Plot
+        plt.figure(figsize=(7, 5))
+        latency_df.plot(kind='bar', x='Percentile', y='Latency (ms)', color='orange', legend=False)
+        plt.title('K6 Load Test Latency Percentiles')
+        plt.ylabel('Latency (ms)')
+        plt.xlabel('Percentile')
+        plt.grid(axis='y')
+        plt.savefig('./outputs/k6_latency_percentiles.eps', format='eps', bbox_inches='tight')
+        plt.close()
+
+        print("Dashboard plots saved successfully!")
+
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"Error plotting K6 dashboard: {e}")
+    
 
 def plot_online_testing_dashboard():
     """
@@ -217,4 +323,5 @@ def plot_online_testing_dashboard():
     # Adjust layout and save the plot
     plt.tight_layout()
     plt.savefig('./outputs/online_testing_dashboard.png')
+    plt.savefig('./outputs/online_testing_dashboard.eps',format='eps', bbox_inches='tight')
     plt.close()
