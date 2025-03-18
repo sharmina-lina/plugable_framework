@@ -3,7 +3,7 @@
 
 ## 1. Login to the VM
 
-## Ensure you have access to your VM and log in via SSH.
+## Ensure you have access to VM and log in via SSH.
 
 ```ssh ubuntu@your-vm-ip```
 
