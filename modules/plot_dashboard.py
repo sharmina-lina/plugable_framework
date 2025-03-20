@@ -60,7 +60,7 @@ def plot_sysbench_dashboard():
     plt.xlabel('Time (seconds)')
     plt.ylabel('TPS')
     plt.grid(True)
-    plt.savefig('./outputs/tps_over_time.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/sys_tps_over_time.eps', format='eps', bbox_inches='tight')
     plt.close()
 
     plt.figure(figsize=(7, 5))
@@ -73,7 +73,7 @@ def plot_sysbench_dashboard():
     plt.ylabel('QPS')
     plt.legend()
     plt.grid(True)
-    plt.savefig('./outputs/qps_over_time.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/sys_qps_over_time.eps', format='eps', bbox_inches='tight')
     plt.close()
 
     plt.figure(figsize=(7, 5))
@@ -81,7 +81,7 @@ def plot_sysbench_dashboard():
     plt.title('Latency Metrics (ms)')
     plt.ylabel('Latency (ms)')
     plt.grid(axis='y')
-    plt.savefig('./outputs/latency_metrics.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/sys_latency_metrics.eps', format='eps', bbox_inches='tight')
     plt.close()
 
     plt.figure(figsize=(7, 5))
@@ -89,7 +89,7 @@ def plot_sysbench_dashboard():
     plt.title('Thread Fairness Metrics')
     plt.ylabel('Value')
     plt.grid(axis='y')
-    plt.savefig('./outputs/thread_fairness.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/sys_thread_fairness.eps', format='eps', bbox_inches='tight')
     plt.close()
 
     
@@ -130,7 +130,7 @@ def plot_ab_dashboard():
     plt.ylabel('Time (ms)')
     plt.xlabel('Category')
     plt.grid(axis='y')
-    plt.savefig('./outputs/connection_times.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/ab_connection_times.eps', format='eps', bbox_inches='tight')
     plt.close()
 
     # Percentiles Graph
@@ -140,7 +140,7 @@ def plot_ab_dashboard():
     plt.ylabel('Time (ms)')
     plt.xlabel('Percentile')
     plt.grid(axis='y')
-    plt.savefig('./outputs/latency_percentiles.eps', format='eps', bbox_inches='tight')
+    plt.savefig('./outputs/ab_latency_percentiles.eps', format='eps', bbox_inches='tight')
     plt.close()
 
 def plot_redis_dashboard():
