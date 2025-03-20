@@ -11,7 +11,9 @@
 
 ### Edit the /etc/hosts file to add the following server names(Database, load balancer and application is running on these server):
 
-```sudo vi /etc/hosts```
+```
+sudo vi /etc/hosts
+```
 
 Add these lines:
 ```
@@ -24,7 +26,9 @@ Save and exit the file.
 
 If you do not have an SSH key, generate one using the following command to establish connection:
 
-```ssh-keygen```
+```
+ssh-keygen
+```
 
 ## 4. Clone the Git Repository
 
