@@ -3,13 +3,13 @@
 
 ## 1. Login to the your VM or Local Machine
 
-## Ensure you have access to the VM and log in via SSH where the database, loadbalancer or other systems are running and you want to evaluate their performance.
+#Ensure you have access to the VM and log in via SSH where the database, loadbalancer or other systems are running and you want to evaluate their performance.
 
 ```ssh ubuntu@your-vm-ip```
 
 ## 2. Add Server Names to Known Hosts
 
-## Edit the /etc/hosts file to add the following server names(Database, load balancer and application is running on these server):
+# Edit the /etc/hosts file to add the following server names(Database, load balancer and application is running on these server):
 
 ```sudo vi /etc/hosts```
 
