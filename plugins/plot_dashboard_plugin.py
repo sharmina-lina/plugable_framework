@@ -29,8 +29,8 @@ class PlotDashboardPlugin(Plugin):
 
         # Load and display the saved images
         sysbench_img = plt.imread('./outputs/sysbench_dashboard.png')
-        ab_img = plt.imread('./outputs/ab_dashboard.png')
-        redis_img = plt.imread('./outputs/redis_dashboard.png')
+        ab_img = plt.imread('./outputs/ab_boxplot_dashboard.png')
+        redis_img = plt.imread('./outputs/redis_dashboard_boxplot.png')
         k6_img = plt.imread('./outputs/k6_dashboard.png')
         #online_testing_img = plt.imread('./outputs/online_testing_dashboard.png')
 

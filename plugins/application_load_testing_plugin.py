@@ -1,5 +1,5 @@
 # plugins/application_load_testing_plugin.py
-from modules.application_load_test import application_connect, install_k6, perform_k6_test, parse_k6_results, visualize_k6_results
+from modules.application_load_test import application_connect, install_k6, perform_k6_test, parse_k6_results, run_k6_test
 from modules.file_transfer import transfer_file_from_vm, transfer_file_to_vm
 from plugins.plugin_manager import Plugin
 import json
@@ -26,17 +26,21 @@ class ApplicationLoadTestingPlugin(Plugin):
         install_k6(self.client, self.config)
 
         print("Transferring  k6_script to server...")
-        transfer_file_to_vm(self.client, 'k6_script.js', './script.js')
+        transfer_file_to_vm(self.client, './script/script.js', './script.js')
 
        # Run K6 test
         print("Run the K6 load test.. ")
 
-        output_file = perform_k6_test(self.client, self.config)
+        run_k6_test(self.client, self.config)
+        """
         print(f"Output file path is: {output_file}")
 
         # Transfer output file
         print("Transferring  k6 load test output...")
         transfer_file_from_vm(self.client, f"{output_file}", './outputs/k6_result.json')
+        
+        """
+        
 
         http_req_duration, http_reqs, iterations = parse_k6_results('./outputs/k6_result.json')
         http_req_duration_df = pd.DataFrame([http_req_duration])

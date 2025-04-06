@@ -1,9 +1,10 @@
 # plugins/online_testing_plugin.py
 from prometheus_client import Gauge, start_http_server
 from plugins.plugin_manager import Plugin
-from modules.application_load_test import application_connect,perform_k6_test, parse_k6_results_online
+from modules.application_load_test import application_connect,run_k6_test
 from modules.monitoring import collect_system_metrics
-from modules.file_transfer import transfer_file_from_vm, transfer_file_to_vm
+from modules.file_transfer import _save_metrics_to_file
+from modules.alert_manager import AlertManager
 import time
 import pandas as pd
 
@@ -14,6 +15,7 @@ class OnlineTestingPlugin(Plugin):
         self.config = config
         self.client = None
         self.metrics = {}
+        self.alert_manager = AlertManager(config)
 
         # Define Prometheus metrics for system monitoring
         self.cpu_usage_gauge = Gauge('cpu_usage_percent', 'Current CPU usage in percent')
@@ -25,8 +27,8 @@ class OnlineTestingPlugin(Plugin):
 
         # Define Prometheus metrics for K6 load testing
         self.http_req_duration_avg_gauge = Gauge('http_req_duration_avg', 'Average HTTP request duration from K6')
-        self.http_req_min_gauge = Gauge('http_req_min', 'Minimum HTTP request duration from K6')
-        self.http_req_max_gauge = Gauge('http_req_max', 'Maximum HTTP request duration from K6')
+        self.http_req_min_gauge = Gauge('http_req_duration_min', 'Minimum HTTP request duration from K6')
+        self.http_req_max_gauge = Gauge('http_req_duration_max', 'Maximum HTTP request duration from K6')
         self.http_reqs_total_counter = Gauge('http_reqs_total', 'Total HTTP requests from K6')
         self.iterations_total_counter = Gauge('iterations_total', 'Total iterations from K6')
 
@@ -45,34 +47,15 @@ class OnlineTestingPlugin(Plugin):
         # Start Prometheus HTTP server on port 9000
         start_http_server(9000)
         print("Prometheus metrics server started on port 9000.")
+
+        # Initialize alert manager if not already done
+        if not hasattr(self, 'alert_manager'):
+            self.alert_manager = AlertManager(self.config)
+            
+        start_http_server(9001)
+        return True
     
-    def run_k6_test(self):
-        """
-        Run the K6 load test and parse the results.
-        """
-        print("Running K6 load test...")
-
-        # Transfer the K6 script to the server
-        transfer_file_to_vm(self.client, 'k6_script.js', './script.js')
-
-        # Run the K6 test
-        output_file = perform_k6_test(self.client, self.config)
-        print(f"K6 test output file: {output_file}")
-
-        # Transfer the K6 output file back to the local machine
-        transfer_file_from_vm(self.client, output_file, './outputs/k6_result.json')
-
-        # Parse the K6 results
-        http_req_duration, http_req_min, http_req_max, http_reqs, iterations = parse_k6_results_online('./outputs/k6_result.json')
-        print(f"K6 metrics - HTTP Req Duration: {http_req_duration}, HTTP request min: {http_req_min}, HTTP request MAX: {http_req_max}  HTTP Reqs: {http_reqs}, Iterations: {iterations}")
-
-        return {
-            'http_req_duration_avg': http_req_duration,
-            'http_req_duration_min': http_req_min,
-            'http_req_duration_max': http_req_max,
-            'http_reqs_total': http_reqs,
-            'iterations_total': iterations
-        }
+    
     
     def run(self):
         """
@@ -82,7 +65,7 @@ class OnlineTestingPlugin(Plugin):
 
         try:
             # Run the K6 test and get the metrics
-            k6_metrics = self.run_k6_test()
+            k6_metrics = run_k6_test(self.client, self.config)
             print("K6 metrics:", k6_metrics)
 
             while True:  # Run in a continuous loop
@@ -108,7 +91,12 @@ class OnlineTestingPlugin(Plugin):
                             metrics[column] = 0  # Default value for missing metrics
 
                     # Save metrics to a file (optional)
-                    self._save_metrics_to_file(metrics)
+                    _save_metrics_to_file(metrics)
+
+                    # Check for alerts
+                    # Alert handling
+                    #alerts = self.alert_manager.check_alert_conditions(metrics)
+                    #self.alert_manager.process_alerts(alerts)
 
                     # Update Prometheus metrics for system monitoring
                     self.cpu_usage_gauge.set(metrics['cpu_usage'])
@@ -151,19 +139,4 @@ class OnlineTestingPlugin(Plugin):
             self.client.close()
             print("SSH connection closed.")
 
-    def _save_metrics_to_file(self, metrics):
-        """
-        Save collected metrics to a CSV file for analysis.
-        """
-        if metrics:
-            print("Saving metrics to CSV....")
-            columns = [
-            'cpu_usage', 'memory_usage', 'disk_read_ops', 'disk_write_ops',
-            'bytes_received', 'bytes_transmitted', 'http_req_duration_avg','http_req_duration_min','http_req_duration_max',
-            'http_reqs_total', 'iterations_total'
-        ]
-
-            df = pd.DataFrame([metrics],columns=columns)
-            df.to_csv('./outputs/online_metrics.csv', mode='a', header=not pd.io.common.file_exists('./outputs/online_metrics.csv'), index=False)
-        else:
-            print("No metrics collected. Skipping file save.")
+    

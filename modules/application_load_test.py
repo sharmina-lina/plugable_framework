@@ -5,6 +5,7 @@ import json
 import plotly.express as px
 import pandas as pd
 import os
+from modules.file_transfer import transfer_file_from_vm, transfer_file_to_vm
 
 # Function to establish SSH connection
 def application_connect(config):
@@ -32,20 +33,67 @@ def install_k6(client,  config):
         else:
             # Install K6 using the package manager
             print("K6 is not installed. Installing now...")
-            install_command = "sudo apt-get update && sudo apt-get install k6"
-            stdin, stdout, stderr = client.exec_command(install_command)
+            install_script = """
+            sudo apt-get update -y
+            sudo apt-get install -y gnupg software-properties-common curl
+            curl -s https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+            sudo apt-get update
+            sudo apt-get install -y k6
+            """
+            #install_command = "sudo apt-get update && sudo snap install k6"
+            stdin, stdout, stderr = client.exec_command(install_script)
             stdout.channel.recv_exit_status()  # Wait for installation to complete
             print("K6 installation completed.")
     except Exception as e:
         print(f"Error checking or installing k6: {e}")
 
+def run_k6_test(client, config):
+        """
+        Run the K6 load test and parse the results.
+        """
+        print("Running K6 load test...")
+
+        # Transfer the K6 script to the server
+        transfer_file_to_vm(client, './script/script.js', './script.js')
+
+        # Run the K6 test
+        output_file = perform_k6_test(client, config)
+        print(f"K6 test output file: {output_file}")
+
+        # Transfer the K6 output file back to the local machine
+        transfer_file_from_vm(client, output_file, './outputs/k6_result.json')
+
+        try:
+            # Parse the K6 results - make sure we get exactly 5 values
+            http_req_duration_avg, http_req_min, http_req_max, http_reqs, iterations = parse_k6_results_online('./outputs/k6_result.json')
+        
+            print(f"K6 metrics - Avg: {http_req_duration_avg}, Min: {http_req_min}, Max: {http_req_max}, Reqs: {http_reqs}, Iters: {iterations}")
+
+            # Return as a dictionary with the expected keys
+            return {
+                'http_req_duration_avg': float(http_req_duration_avg),
+                'http_req_duration_min': float(http_req_min),
+                'http_req_duration_max': float(http_req_max),
+                'http_reqs_total': int(http_reqs),
+                'iterations_total': int(iterations)
+            }
+        except ValueError as e:
+            print(f"Error unpacking K6 results: {e}")
+            return {
+                'http_req_duration_avg': 0.0,
+                'http_req_duration_min': 0.0,
+                'http_req_duration_max': 0.0,
+                'http_reqs_total': 0,
+                'iterations_total': 0
+             }
 def perform_k6_test(client, config):
     
     # Define the path to the k6 script on the remote VM
     k6_script_path = 'script.js'
     
     # Define the k6 command (redirect both stdout and stderr to the output file)
-    k6_command = f"k6 run --out json={k6_script_path}_result.json {k6_script_path} "
+    k6_command = f"sudo k6 run --out json={k6_script_path}_result.json {k6_script_path} "
     output_file_path = f"{k6_script_path}_result.json"
 
     # Generate the k6 script on the remote VM
@@ -56,7 +104,7 @@ def perform_k6_test(client, config):
         print("Running K6 test...")
         stdin, stdout, stderr = client.exec_command(k6_command)
         stdout.channel.recv_exit_status()  # Wait for the command to complete
-        print("K6 Load test completed. Metrics are saved in 'k6_metrics.json'.")
+        print(f"K6 Load test completed. Metrics are saved in '{k6_script_path}_result.json'.")
 
     except FileNotFoundError as e:
         print(f"Error: {e}. Ensure 'k6' is installed and accessible on the remote machine.")
