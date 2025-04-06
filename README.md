@@ -7,9 +7,11 @@
 
 ```ssh ubuntu@your-vm-ip```
 
-## 2. Add Server Names to Known Hosts
+## 2. Add Server Names to Known Hosts(Optional)
 
-### Edit the /etc/hosts file to add the following server names(Database, load balancer and application is running on these server):
+### Edit the /etc/hosts file to add the following server names(Database, load balancer and application is running on these server): 
+
+### add the server Ip to the config.yaml file as parameter
 
 ```
 sudo vi /etc/hosts
