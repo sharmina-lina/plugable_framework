@@ -1,6 +1,14 @@
 
-    import http from 'k6/http';
+import http from 'k6/http';
 import { check, sleep } from 'k6';
+
+export const options = {
+    vus: 10, // Number of Virtual Users
+    duration: '10s', // Test runs for 10 seconds
+    thresholds: {
+        http_req_duration: ['p(95)<500'], // Ensure 95% of requests complete under 500ms
+    },
+};
 
 export default function () {
     // Define the URL of the frontend service
@@ -15,7 +23,7 @@ export default function () {
     });
 
     // Sleep for 1 second between iterations
-    sleep(1);
+    sleep(Math.random() * 2.8 + 0.5);
 }
 
     

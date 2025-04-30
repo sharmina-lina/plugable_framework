@@ -1,7 +1,8 @@
 # plugins/plot_dashboard_plugin.py
-from plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard
+from modules.plot_dashboard import plot_sysbench_dashboard, plot_ab_dashboard, plot_redis_dashboard, plot_k6_dashboard, plot_online_testing_dashboard
 from plugins.plugin_manager import Plugin
 import matplotlib.pyplot as plt
+import time
 
 class PlotDashboardPlugin(Plugin):
     def __init__(self, config):
@@ -18,6 +19,8 @@ class PlotDashboardPlugin(Plugin):
         plot_redis_dashboard()
         print("Plotting the k6 load test dashboard...")
         plot_k6_dashboard()
+        print("Plotting online testing dashboard...")
+        plot_online_testing_dashboard()
 
 
         
@@ -26,9 +29,10 @@ class PlotDashboardPlugin(Plugin):
 
         # Load and display the saved images
         sysbench_img = plt.imread('./outputs/sysbench_dashboard.png')
-        ab_img = plt.imread('./outputs/ab_dashboard.png')
-        redis_img = plt.imread('./outputs/redis_dashboard.png')
+        ab_img = plt.imread('./outputs/ab_boxplot_dashboard.png')
+        redis_img = plt.imread('./outputs/redis_dashboard_boxplot.png')
         k6_img = plt.imread('./outputs/k6_dashboard.png')
+        #online_testing_img = plt.imread('./outputs/online_testing_dashboard.png')
 
         axs[0, 0].imshow(sysbench_img)
         axs[0, 0].axis('off')  # Hide axes for better visualization
@@ -42,9 +46,20 @@ class PlotDashboardPlugin(Plugin):
         axs[1, 0].axis('off')  # Hide axes for better visualization
         axs[1, 0].set_title('Dashboard of Load Balancer Performance')
 
+        
         axs[1, 1].imshow(redis_img)
         axs[1, 1].axis('off')  # Hide axes for better visualization
         axs[1, 1].set_title('Dashboard of Redis Performance')
+    
+        
 
         plt.tight_layout()
-        plt.show()
+        plt.savefig('./outputs/all_dashboard_together.png')
+        plt.show(block=False)
+        plt.pause(15)
+        plt.close()
+
+    def teardown(self):
+        print("Tearing down plot dashboard...")
+        if self.client:
+            self.client.close()
