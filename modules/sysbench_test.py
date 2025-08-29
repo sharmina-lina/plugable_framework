@@ -11,17 +11,7 @@ def load_config():
     
 
 def execute_remote_command(client, command, output_file=None):
-    """
-    Execute a command on a remote machine via SSH.
 
-    Args:
-        client (paramiko.SSHClient): SSH client connected to the remote server.
-        command (str): Command to execute remotely.
-        output_file (str, optional): Local file to save the command's output.
-
-    Returns:
-        None
-    """
     try:
         print(f"Executing sysbench command..")
         stdin, stdout, stderr = client.exec_command(command)

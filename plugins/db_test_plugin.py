@@ -3,6 +3,7 @@ from modules.db_connect import connect_to_database, close_database_connection
 from modules.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output
 from modules.sysbench_install import ssh_connect, install_sysbench
 from modules.file_transfer import transfer_file_from_vm
+from modules.plot_dashboard import plot_sysbench_dashboard
 from plugins.plugin_manager import Plugin
 from pandas import Series
 
@@ -49,7 +50,7 @@ class DbTestPlugin(Plugin):
         else:
             print("Parsed data is empty. Check the input file or parsing logic.")
 
-        
+        plot_sysbench_dashboard()
         
 
     def teardown(self):
