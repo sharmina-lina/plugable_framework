@@ -2,6 +2,7 @@
 import paramiko
 import sys
 import yaml
+import os
 
 
 # Function to establish SSH connection
@@ -16,6 +17,38 @@ def ssh_connect(config):
         return client
     except Exception as e:
         print(f"Error: Unable to connect to {config['ssh']['host']}. {e}")
+        sys.exit(1)
+
+def ssh_connect_azure_vm(config):
+    try:
+        ssh_config = config['ssh']
+        host = ssh_config['host']
+        username = ssh_config['username']
+        key_path = ssh_config['key_path']
+
+        # Validate key path
+        if not os.path.exists(key_path):
+            print(f"❌ PEM key not found at {key_path}")
+            sys.exit(1)
+
+        # Load private key
+        key = paramiko.RSAKey.from_private_key_file(key_path)
+
+        # Initialize SSH client
+        client = paramiko.SSHClient()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+        print(f"🔗 Connecting to {username}@{host} ...")
+        client.connect(hostname=host, username=username, pkey=key)
+        print(f"✅ Successfully connected to {host}")
+
+        return client
+
+    except paramiko.AuthenticationException:
+        print("❌ Authentication failed. Please check username or PEM key.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"❌ Connection error: {e}")
         sys.exit(1)
 
 # Function to check if sysbench is installed on remote VM

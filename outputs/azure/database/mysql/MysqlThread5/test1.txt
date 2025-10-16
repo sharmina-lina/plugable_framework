@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 94.57 qps: 1899.09 (r/w/o: 1330.37/379.08/189.64) lat (ms,99%): 297.92 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 98.92 qps: 1976.71 (r/w/o: 1383.22/395.66/197.83) lat (ms,99%): 248.83 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 98.80 qps: 1975.99 (r/w/o: 1383.19/395.20/197.60) lat (ms,99%): 257.95 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 98.29 qps: 1967.45 (r/w/o: 1377.50/393.37/196.59) lat (ms,99%): 272.27 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 101.41 qps: 2028.19 (r/w/o: 1419.53/405.84/202.82) lat (ms,99%): 272.27 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 102.29 qps: 2045.88 (r/w/o: 1432.12/409.18/204.59) lat (ms,99%): 253.35 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            83272
+        write:                           23792
+        other:                           11896
+        total:                           118960
+    transactions:                        5948   (99.09 per sec.)
+    queries:                             118960 (1981.70 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0277s
+    total number of events:              5948
+
+Latency (ms):
+         min:                                   13.39
+         avg:                                   50.44
+         max:                                  385.32
+         99th percentile:                      277.21
+         sum:                               300045.49
+
+Threads fairness:
+    events (avg/stddev):           1189.6000/8.19
+    execution time (avg/stddev):   60.0091/0.01
+

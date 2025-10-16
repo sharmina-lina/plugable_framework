@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 15
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 15 tps: 232.42 qps: 4672.86 (r/w/o: 3274.65/931.57/466.64) lat (ms,99%): 244.38 err/s: 0.30 reconn/s: 0.00
+[ 20s ] thds: 15 tps: 224.71 qps: 4502.94 (r/w/o: 3152.46/900.55/449.92) lat (ms,99%): 219.36 err/s: 0.50 reconn/s: 0.00
+[ 30s ] thds: 15 tps: 236.38 qps: 4730.84 (r/w/o: 3312.95/945.03/472.86) lat (ms,99%): 215.44 err/s: 0.30 reconn/s: 0.00
+[ 40s ] thds: 15 tps: 226.64 qps: 4537.71 (r/w/o: 3176.57/907.36/453.78) lat (ms,99%): 200.47 err/s: 0.30 reconn/s: 0.00
+[ 50s ] thds: 15 tps: 230.98 qps: 4628.92 (r/w/o: 3242.93/923.72/462.26) lat (ms,99%): 227.40 err/s: 0.30 reconn/s: 0.00
+[ 60s ] thds: 15 tps: 234.88 qps: 4692.24 (r/w/o: 3282.88/939.51/469.85) lat (ms,99%): 231.53 err/s: 0.10 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            194516
+        write:                           55528
+        other:                           27770
+        total:                           277814
+    transactions:                        13876  (231.03 per sec.)
+    queries:                             277814 (4625.56 per sec.)
+    ignored errors:                      18     (0.30 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0591s
+    total number of events:              13876
+
+Latency (ms):
+         min:                                   10.61
+         avg:                                   64.88
+         max:                                  609.53
+         99th percentile:                      227.40
+         sum:                               900330.30
+
+Threads fairness:
+    events (avg/stddev):           925.0667/9.83
+    execution time (avg/stddev):   60.0220/0.01
+

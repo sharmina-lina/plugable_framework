@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 123.88 qps: 2487.03 (r/w/o: 1741.27/497.51/248.25) lat (ms,99%): 211.60 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 117.30 qps: 2345.83 (r/w/o: 1642.22/469.01/234.60) lat (ms,99%): 240.02 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 121.29 qps: 2425.39 (r/w/o: 1697.96/484.86/242.58) lat (ms,99%): 207.82 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 114.31 qps: 2285.66 (r/w/o: 1600.11/456.93/228.62) lat (ms,99%): 248.83 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 116.00 qps: 2318.28 (r/w/o: 1622.26/464.02/232.01) lat (ms,99%): 262.64 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 117.10 qps: 2344.88 (r/w/o: 1641.49/469.20/234.20) lat (ms,99%): 248.83 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            99456
+        write:                           28416
+        other:                           14208
+        total:                           142080
+    transactions:                        7104   (118.26 per sec.)
+    queries:                             142080 (2365.26 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0676s
+    total number of events:              7104
+
+Latency (ms):
+         min:                                   12.35
+         avg:                                   42.26
+         max:                                  410.23
+         99th percentile:                      248.83
+         sum:                               300181.30
+
+Threads fairness:
+    events (avg/stddev):           1420.8000/4.92
+    execution time (avg/stddev):   60.0363/0.02
+

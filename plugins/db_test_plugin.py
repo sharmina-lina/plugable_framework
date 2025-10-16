@@ -1,7 +1,7 @@
 # plugins/db_test_plugin.py
 from modules.db_connect import connect_to_database, close_database_connection
 from modules.sysbench_test import prepare_database, perform_sysbench_test, parse_sysbench_output
-from modules.sysbench_install import ssh_connect, install_sysbench
+from modules.sysbench_install import ssh_connect, install_sysbench, ssh_connect_azure_vm
 from modules.file_transfer import transfer_file_from_vm
 from modules.plot_dashboard import plot_sysbench_dashboard
 from plugins.plugin_manager import Plugin
@@ -21,14 +21,15 @@ class DbTestPlugin(Plugin):
     def run(self):
         
         print("Preparing database for running Sysbench test...")
-        self.client = ssh_connect(self.config)
+        #self.client = ssh_connect(self.config)
+        self.client = ssh_connect_azure_vm(self.config)
         
         # Check Sysbench installed or not
-        install_sysbench(self.client, self.config)
+        #install_sysbench(self.client, self.config)
 
         # Prepare Database
         print("Running Sysbench for preparaing database...")
-        prepare_database(self.client, self.config)
+        #prepare_database(self.client, self.config)
         
         print("Running Sysbench test for Database performance...")
         # Perform test for performance
@@ -36,10 +37,9 @@ class DbTestPlugin(Plugin):
         
         # Transfer output file
         print("Transferring sysbench metrics file...")
-        transfer_file_from_vm(self.client, 'sysbench_metrics.txt', './outputs/sysbench_metrics.txt')
-
+        transfer_file_from_vm(self.client, 'pgsql10_thread20.txt', './outputs/aws/Database/postgresql/thread20/test10.txt')
         print("Parsing sysbench output...")
-        df_intermediate, final_stats, latency_stats, fairness_stats = parse_sysbench_output('./outputs/sysbench_metrics.txt')
+        df_intermediate, final_stats, latency_stats, fairness_stats = parse_sysbench_output('./outputs/aws/Database/postgresql/thread20/test10.txt')
         
         if not df_intermediate.empty:
             print("Saving parsed data to CSV...")
@@ -50,7 +50,7 @@ class DbTestPlugin(Plugin):
         else:
             print("Parsed data is empty. Check the input file or parsing logic.")
 
-        plot_sysbench_dashboard()
+       # plot_sysbench_dashboard()
         
 
     def teardown(self):

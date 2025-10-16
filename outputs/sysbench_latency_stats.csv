@@ -1,6 +1,6 @@
 ,0
-Min (ms),61.49
-Avg (ms),716.58
-Max (ms),2843.21
-99th Percentile (ms),2362.72
-Sum (ms),615541.03
+Min (ms),8.27
+Avg (ms),61.0
+Max (ms),244.85
+99th Percentile (ms),95.81
+Sum (ms),1200541.79

@@ -1,5 +1,5 @@
 # plugins/loadbalancer_test_plugin.py
-from modules.sysbench_install import ssh_connect
+from modules.sysbench_install import ssh_connect, ssh_connect_azure_vm
 from modules.loadbalancer_test import perform_ab_test, install_ab, parse_ab_output
 from modules.file_transfer import transfer_file_from_vm
 from plugins.plugin_manager import Plugin
@@ -17,7 +17,8 @@ class LoadbalancerTestPlugin(Plugin):
 
     def run(self):
         print("Preparing, Installation and running Apache benchmark test...")
-        self.client = ssh_connect(self.config)
+        #self.client = ssh_connect(self.config)
+        self.client = ssh_connect_azure_vm(self.config)
         #Check ab is installed or not If not installed earlied then install it.
         install_ab(self.client, self.config)
 
@@ -25,9 +26,9 @@ class LoadbalancerTestPlugin(Plugin):
         perform_ab_test(self.client, self.config)
         
         print("Transferring Apache benchmark metrics file...")
-        transfer_file_from_vm(self.client, 'ab_metrics.txt', './outputs/ab_metrics.txt')
+        transfer_file_from_vm(self.client, 'ab_metrics.txt', './outputs/aws/loadbalancer/nginx/10000/ab_metrics10.txt')
 
-        print("Parsing ab output...")
+        print("Parsing ab output...") 
 
         # Parse the ab_metrics.txt file
         summary_stats, connection_times_df, percentiles_df = parse_ab_output('./outputs/ab_metrics.txt')

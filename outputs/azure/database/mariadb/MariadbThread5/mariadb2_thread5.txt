@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 222.05 qps: 4448.81 (r/w/o: 3114.90/889.30/444.60) lat (ms,99%): 99.33 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 213.49 qps: 4270.20 (r/w/o: 2989.59/853.54/427.07) lat (ms,99%): 130.13 err/s: 0.10 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 213.42 qps: 4269.71 (r/w/o: 2989.28/853.58/426.84) lat (ms,99%): 112.67 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 212.11 qps: 4242.03 (r/w/o: 2969.49/848.33/424.21) lat (ms,99%): 114.72 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 213.70 qps: 4276.83 (r/w/o: 2993.55/855.69/427.59) lat (ms,99%): 114.72 err/s: 0.20 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 200.01 qps: 4000.72 (r/w/o: 2800.78/799.92/400.01) lat (ms,99%): 155.80 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            178584
+        write:                           51018
+        other:                           25509
+        total:                           255111
+    transactions:                        12753  (212.07 per sec.)
+    queries:                             255111 (4242.16 per sec.)
+    ignored errors:                      3      (0.05 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.1357s
+    total number of events:              12753
+
+Latency (ms):
+         min:                                    6.46
+         avg:                                   23.56
+         max:                                  287.45
+         99th percentile:                      121.08
+         sum:                               300438.57
+
+Threads fairness:
+    events (avg/stddev):           2550.6000/7.47
+    execution time (avg/stddev):   60.0877/0.04
+

@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 179.55 qps: 3598.57 (r/w/o: 2520.25/718.71/359.61) lat (ms,99%): 118.92 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 156.77 qps: 3136.23 (r/w/o: 2194.80/627.89/313.54) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 157.62 qps: 3151.85 (r/w/o: 2206.01/630.59/315.24) lat (ms,99%): 142.39 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 154.28 qps: 3085.65 (r/w/o: 2160.56/616.53/308.57) lat (ms,99%): 155.80 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 155.00 qps: 3099.90 (r/w/o: 2169.70/620.20/310.00) lat (ms,99%): 155.80 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 151.93 qps: 3040.46 (r/w/o: 2127.96/608.63/303.87) lat (ms,99%): 150.29 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            133798
+        write:                           38228
+        other:                           19114
+        total:                           191140
+    transactions:                        9557   (159.24 per sec.)
+    queries:                             191140 (3184.71 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0163s
+    total number of events:              9557
+
+Latency (ms):
+         min:                                   10.66
+         avg:                                   31.39
+         max:                                  252.80
+         99th percentile:                      147.61
+         sum:                               299990.20
+
+Threads fairness:
+    events (avg/stddev):           1911.4000/8.01
+    execution time (avg/stddev):   59.9980/0.00
+

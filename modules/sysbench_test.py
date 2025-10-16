@@ -91,7 +91,7 @@ def perform_sysbench_test(client, config):
         f"--time={db_duration} "
         f"--report-interval=10 "
         f"--percentile=99 "
-        f"run > sysbench_metrics.txt"
+        f"run > pgsql10_thread20.txt"
     )
 
     # Execute the command on the remote server

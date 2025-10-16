@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 10
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 10 tps: 508.50 qps: 10184.87 (r/w/o: 7131.98/2034.89/1018.00) lat (ms,99%): 33.72 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 10 tps: 505.36 qps: 10104.58 (r/w/o: 7071.73/2021.84/1011.02) lat (ms,99%): 31.37 err/s: 0.10 reconn/s: 0.00
+[ 30s ] thds: 10 tps: 467.56 qps: 9355.50 (r/w/o: 6550.84/1869.54/935.12) lat (ms,99%): 34.95 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 10 tps: 256.39 qps: 5128.25 (r/w/o: 3588.00/1027.47/512.79) lat (ms,99%): 257.95 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 10 tps: 504.71 qps: 10096.07 (r/w/o: 7066.99/2019.35/1009.73) lat (ms,99%): 33.12 err/s: 0.10 reconn/s: 0.00
+[ 60s ] thds: 10 tps: 506.77 qps: 10129.62 (r/w/o: 7091.12/2024.86/1013.63) lat (ms,99%): 33.72 err/s: 0.10 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            385098
+        write:                           110020
+        other:                           55016
+        total:                           550134
+    transactions:                        27504  (458.14 per sec.)
+    queries:                             550134 (9163.67 per sec.)
+    ignored errors:                      3      (0.05 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0327s
+    total number of events:              27504
+
+Latency (ms):
+         min:                                    5.47
+         avg:                                   21.82
+         max:                                  441.38
+         99th percentile:                       41.85
+         sum:                               600140.65
+
+Threads fairness:
+    events (avg/stddev):           2750.4000/19.37
+    execution time (avg/stddev):   60.0141/0.01
+

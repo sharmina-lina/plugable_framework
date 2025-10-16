@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 281.50 qps: 5637.22 (r/w/o: 3947.31/1126.41/563.50) lat (ms,99%): 31.94 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 252.44 qps: 5048.94 (r/w/o: 3533.99/1010.07/504.88) lat (ms,99%): 59.99 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 265.40 qps: 5310.28 (r/w/o: 3717.78/1061.50/531.00) lat (ms,99%): 56.84 err/s: 0.20 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 253.99 qps: 5085.16 (r/w/o: 3559.93/1017.05/508.18) lat (ms,99%): 80.03 err/s: 0.20 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 253.03 qps: 5061.95 (r/w/o: 3544.06/1011.63/506.26) lat (ms,99%): 77.19 err/s: 0.20 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 256.48 qps: 5132.55 (r/w/o: 3593.66/1025.73/513.17) lat (ms,99%): 80.03 err/s: 0.20 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            219002
+        write:                           62550
+        other:                           31278
+        total:                           312830
+    transactions:                        15635  (260.49 per sec.)
+    queries:                             312830 (5211.91 per sec.)
+    ignored errors:                      8      (0.13 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0208s
+    total number of events:              15635
+
+Latency (ms):
+         min:                                    6.18
+         avg:                                   19.19
+         max:                                  189.19
+         99th percentile:                       68.05
+         sum:                               299975.28
+
+Threads fairness:
+    events (avg/stddev):           3127.0000/15.48
+    execution time (avg/stddev):   59.9951/0.00
+

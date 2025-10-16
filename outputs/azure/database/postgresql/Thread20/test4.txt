@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 20
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 20 tps: 484.92 qps: 9720.93 (r/w/o: 6808.20/1940.89/971.84) lat (ms,99%): 69.29 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 20 tps: 480.56 qps: 9615.83 (r/w/o: 6731.36/1923.05/961.42) lat (ms,99%): 123.28 err/s: 0.10 reconn/s: 0.00
+[ 30s ] thds: 20 tps: 524.98 qps: 10491.73 (r/w/o: 7342.84/2098.53/1050.36) lat (ms,99%): 58.92 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 20 tps: 343.53 qps: 6877.21 (r/w/o: 4815.36/1374.80/687.05) lat (ms,99%): 297.92 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 20 tps: 448.10 qps: 8962.23 (r/w/o: 6274.85/1790.99/896.39) lat (ms,99%): 253.35 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 20 tps: 533.34 qps: 10670.95 (r/w/o: 7469.02/2135.25/1066.67) lat (ms,99%): 55.82 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            394492
+        write:                           112702
+        other:                           56364
+        total:                           563558
+    transactions:                        28177  (469.01 per sec.)
+    queries:                             563558 (9380.60 per sec.)
+    ignored errors:                      1      (0.02 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0754s
+    total number of events:              28177
+
+Latency (ms):
+         min:                                    5.43
+         avg:                                   42.61
+         max:                                  406.17
+         99th percentile:                      200.47
+         sum:                              1200593.97
+
+Threads fairness:
+    events (avg/stddev):           1408.8500/12.64
+    execution time (avg/stddev):   60.0297/0.02
+

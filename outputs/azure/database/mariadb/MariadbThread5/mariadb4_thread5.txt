@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 217.99 qps: 4368.36 (r/w/o: 3059.40/872.37/436.59) lat (ms,99%): 102.97 err/s: 0.10 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 217.56 qps: 4348.98 (r/w/o: 3043.80/870.06/435.13) lat (ms,99%): 110.66 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 211.10 qps: 4221.73 (r/w/o: 2954.95/844.59/422.19) lat (ms,99%): 114.72 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 215.17 qps: 4305.98 (r/w/o: 3014.56/861.08/430.34) lat (ms,99%): 108.68 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 218.94 qps: 4380.76 (r/w/o: 3066.90/875.87/437.99) lat (ms,99%): 102.97 err/s: 0.10 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 216.17 qps: 4326.17 (r/w/o: 3028.66/864.97/432.54) lat (ms,99%): 106.75 err/s: 0.20 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            181706
+        write:                           51903
+        other:                           25954
+        total:                           259563
+    transactions:                        12975  (216.17 per sec.)
+    queries:                             259563 (4324.46 per sec.)
+    ignored errors:                      4      (0.07 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0206s
+    total number of events:              12975
+
+Latency (ms):
+         min:                                    6.33
+         avg:                                   23.12
+         max:                                  194.81
+         99th percentile:                      108.68
+         sum:                               300006.13
+
+Threads fairness:
+    events (avg/stddev):           2595.0000/10.12
+    execution time (avg/stddev):   60.0012/0.01
+

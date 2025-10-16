@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 276.79 qps: 5541.59 (r/w/o: 3880.35/1107.16/554.08) lat (ms,99%): 34.33 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 257.80 qps: 5157.65 (r/w/o: 3610.64/1031.41/515.61) lat (ms,99%): 69.29 err/s: 0.10 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 240.59 qps: 4813.06 (r/w/o: 3369.10/962.57/481.39) lat (ms,99%): 68.05 err/s: 0.10 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 215.69 qps: 4313.84 (r/w/o: 3019.99/862.47/431.38) lat (ms,99%): 38.25 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 267.70 qps: 5355.87 (r/w/o: 3749.25/1071.11/535.51) lat (ms,99%): 53.85 err/s: 0.10 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 252.72 qps: 5058.45 (r/w/o: 3541.62/1011.19/505.65) lat (ms,99%): 84.47 err/s: 0.20 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            211736
+        write:                           60482
+        other:                           30243
+        total:                           302461
+    transactions:                        15119  (251.78 per sec.)
+    queries:                             302461 (5036.95 per sec.)
+    ignored errors:                      5      (0.08 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0470s
+    total number of events:              15119
+
+Latency (ms):
+         min:                                    6.93
+         avg:                                   19.85
+         max:                                 2242.94
+         99th percentile:                       62.19
+         sum:                               300093.35
+
+Threads fairness:
+    events (avg/stddev):           3023.8000/15.47
+    execution time (avg/stddev):   60.0187/0.01
+

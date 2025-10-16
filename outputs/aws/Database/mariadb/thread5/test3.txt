@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 276.94 qps: 5549.22 (r/w/o: 3886.60/1107.94/554.67) lat (ms,99%): 31.94 err/s: 0.30 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 251.30 qps: 5029.62 (r/w/o: 3520.52/1006.20/502.90) lat (ms,99%): 75.82 err/s: 0.30 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 249.41 qps: 4988.02 (r/w/o: 3491.95/997.24/498.82) lat (ms,99%): 74.46 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 250.38 qps: 5010.24 (r/w/o: 3507.48/1001.91/500.85) lat (ms,99%): 73.13 err/s: 0.10 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 257.85 qps: 5153.24 (r/w/o: 3606.43/1031.11/515.70) lat (ms,99%): 66.84 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 235.75 qps: 4722.77 (r/w/o: 3307.48/943.69/471.60) lat (ms,99%): 101.13 err/s: 0.10 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            213220
+        write:                           60898
+        other:                           30452
+        total:                           304570
+    transactions:                        15222  (253.42 per sec.)
+    queries:                             304570 (5070.56 per sec.)
+    ignored errors:                      8      (0.13 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0649s
+    total number of events:              15222
+
+Latency (ms):
+         min:                                    7.03
+         avg:                                   19.71
+         max:                                  227.28
+         99th percentile:                       74.46
+         sum:                               300064.56
+
+Threads fairness:
+    events (avg/stddev):           3044.4000/5.78
+    execution time (avg/stddev):   60.0129/0.02
+

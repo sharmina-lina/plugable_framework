@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 10
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 10 tps: 283.95 qps: 5695.78 (r/w/o: 3989.98/1136.60/569.20) lat (ms,99%): 110.66 err/s: 0.40 reconn/s: 0.00
+[ 20s ] thds: 10 tps: 268.81 qps: 5388.83 (r/w/o: 3774.69/1075.83/538.31) lat (ms,99%): 130.13 err/s: 0.60 reconn/s: 0.00
+[ 30s ] thds: 10 tps: 259.90 qps: 5201.43 (r/w/o: 3641.25/1040.19/519.99) lat (ms,99%): 123.28 err/s: 0.20 reconn/s: 0.00
+[ 40s ] thds: 10 tps: 264.95 qps: 5301.73 (r/w/o: 3712.55/1058.99/530.19) lat (ms,99%): 130.13 err/s: 0.30 reconn/s: 0.00
+[ 50s ] thds: 10 tps: 268.55 qps: 5372.57 (r/w/o: 3760.75/1074.51/537.31) lat (ms,99%): 130.13 err/s: 0.20 reconn/s: 0.00
+[ 60s ] thds: 10 tps: 266.50 qps: 5329.21 (r/w/o: 3730.41/1065.90/532.90) lat (ms,99%): 137.35 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            226156
+        write:                           64560
+        other:                           32291
+        total:                           323007
+    transactions:                        16137  (268.69 per sec.)
+    queries:                             323007 (5378.34 per sec.)
+    ignored errors:                      17     (0.28 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0557s
+    total number of events:              16137
+
+Latency (ms):
+         min:                                    8.88
+         avg:                                   37.19
+         max:                                  209.15
+         99th percentile:                      127.81
+         sum:                               600142.85
+
+Threads fairness:
+    events (avg/stddev):           1613.7000/6.78
+    execution time (avg/stddev):   60.0143/0.01
+

@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 15
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 15 tps: 233.53 qps: 4695.98 (r/w/o: 3291.31/935.82/468.86) lat (ms,99%): 227.40 err/s: 0.30 reconn/s: 0.00
+[ 20s ] thds: 15 tps: 231.56 qps: 4632.26 (r/w/o: 3243.01/925.83/463.42) lat (ms,99%): 189.93 err/s: 0.30 reconn/s: 0.00
+[ 30s ] thds: 15 tps: 232.05 qps: 4654.68 (r/w/o: 3259.09/931.00/464.60) lat (ms,99%): 196.89 err/s: 0.50 reconn/s: 0.00
+[ 40s ] thds: 15 tps: 228.58 qps: 4570.30 (r/w/o: 3200.15/912.60/457.55) lat (ms,99%): 253.35 err/s: 0.40 reconn/s: 0.00
+[ 50s ] thds: 15 tps: 235.02 qps: 4712.35 (r/w/o: 3300.51/941.59/470.24) lat (ms,99%): 223.34 err/s: 0.20 reconn/s: 0.00
+[ 60s ] thds: 15 tps: 228.03 qps: 4562.32 (r/w/o: 3193.04/912.72/456.56) lat (ms,99%): 248.83 err/s: 0.50 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            194992
+        write:                           55649
+        other:                           27834
+        total:                           278475
+    transactions:                        13906  (231.36 per sec.)
+    queries:                             278475 (4633.05 per sec.)
+    ignored errors:                      22     (0.37 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.1048s
+    total number of events:              13906
+
+Latency (ms):
+         min:                                    9.90
+         avg:                                   64.77
+         max:                                  388.95
+         99th percentile:                      223.34
+         sum:                               900760.53
+
+Threads fairness:
+    events (avg/stddev):           927.0667/10.86
+    execution time (avg/stddev):   60.0507/0.04
+

@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 10
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 10 tps: 287.29 qps: 5761.94 (r/w/o: 4036.18/1149.77/575.98) lat (ms,99%): 101.13 err/s: 0.40 reconn/s: 0.00
+[ 20s ] thds: 10 tps: 263.24 qps: 5269.35 (r/w/o: 3689.23/1053.35/526.78) lat (ms,99%): 130.13 err/s: 0.30 reconn/s: 0.00
+[ 30s ] thds: 10 tps: 263.63 qps: 5280.08 (r/w/o: 3697.31/1055.12/527.66) lat (ms,99%): 118.92 err/s: 0.40 reconn/s: 0.00
+[ 40s ] thds: 10 tps: 257.50 qps: 5155.76 (r/w/o: 3609.34/1031.21/515.21) lat (ms,99%): 139.85 err/s: 0.20 reconn/s: 0.00
+[ 50s ] thds: 10 tps: 268.20 qps: 5370.12 (r/w/o: 3760.31/1073.00/536.80) lat (ms,99%): 123.28 err/s: 0.40 reconn/s: 0.00
+[ 60s ] thds: 10 tps: 258.30 qps: 5173.58 (r/w/o: 3623.59/1032.90/517.10) lat (ms,99%): 123.28 err/s: 0.50 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            224210
+        write:                           63994
+        other:                           32008
+        total:                           320212
+    transactions:                        15993  (266.35 per sec.)
+    queries:                             320212 (5332.89 per sec.)
+    ignored errors:                      22     (0.37 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0433s
+    total number of events:              15993
+
+Latency (ms):
+         min:                                    8.67
+         avg:                                   37.53
+         max:                                  228.65
+         99th percentile:                      125.52
+         sum:                               600153.78
+
+Threads fairness:
+    events (avg/stddev):           1599.3000/15.56
+    execution time (avg/stddev):   60.0154/0.01
+

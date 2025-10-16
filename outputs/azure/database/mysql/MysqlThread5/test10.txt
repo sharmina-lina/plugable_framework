@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 129.16 qps: 2591.39 (r/w/o: 1814.70/517.86/258.83) lat (ms,99%): 219.36 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 120.51 qps: 2410.32 (r/w/o: 1686.85/482.44/241.02) lat (ms,99%): 219.36 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 123.08 qps: 2459.64 (r/w/o: 1722.25/491.23/246.16) lat (ms,99%): 219.36 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 115.52 qps: 2311.30 (r/w/o: 1618.18/462.08/231.04) lat (ms,99%): 235.74 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 117.79 qps: 2355.94 (r/w/o: 1648.69/471.67/235.58) lat (ms,99%): 244.38 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 117.39 qps: 2348.38 (r/w/o: 1644.11/469.48/234.79) lat (ms,99%): 244.38 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            101360
+        write:                           28960
+        other:                           14480
+        total:                           144800
+    transactions:                        7240   (120.62 per sec.)
+    queries:                             144800 (2412.40 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0218s
+    total number of events:              7240
+
+Latency (ms):
+         min:                                   12.49
+         avg:                                   41.44
+         max:                                  389.80
+         99th percentile:                      235.74
+         sum:                               300023.16
+
+Threads fairness:
+    events (avg/stddev):           1448.0000/11.51
+    execution time (avg/stddev):   60.0046/0.01
+

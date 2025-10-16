@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 175.05 qps: 3506.73 (r/w/o: 2455.15/700.99/350.59) lat (ms,99%): 139.85 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 158.51 qps: 3172.53 (r/w/o: 2220.86/634.65/317.02) lat (ms,99%): 144.97 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 155.40 qps: 3105.17 (r/w/o: 2174.15/620.21/310.81) lat (ms,99%): 144.97 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 155.19 qps: 3106.29 (r/w/o: 2174.42/621.48/310.39) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 155.81 qps: 3117.22 (r/w/o: 2181.89/623.72/311.61) lat (ms,99%): 139.85 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 153.90 qps: 3074.05 (r/w/o: 2151.57/614.69/307.80) lat (ms,99%): 144.97 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            133616
+        write:                           38176
+        other:                           19088
+        total:                           190880
+    transactions:                        9544   (158.73 per sec.)
+    queries:                             190880 (3174.68 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.1242s
+    total number of events:              9544
+
+Latency (ms):
+         min:                                    9.03
+         avg:                                   31.47
+         max:                                  258.46
+         99th percentile:                      144.97
+         sum:                               300328.91
+
+Threads fairness:
+    events (avg/stddev):           1908.8000/2.56
+    execution time (avg/stddev):   60.0658/0.03
+

@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 175.75 qps: 3523.48 (r/w/o: 2467.46/704.02/352.01) lat (ms,99%): 130.13 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 156.01 qps: 3119.80 (r/w/o: 2183.51/624.26/312.03) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 154.00 qps: 3078.96 (r/w/o: 2155.37/615.59/308.00) lat (ms,99%): 150.29 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 152.00 qps: 3039.66 (r/w/o: 2127.57/608.09/304.00) lat (ms,99%): 144.97 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 153.60 qps: 3073.71 (r/w/o: 2152.04/614.48/307.19) lat (ms,99%): 139.85 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 154.41 qps: 3086.26 (r/w/o: 2160.41/617.03/308.82) lat (ms,99%): 153.02 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            132482
+        write:                           37852
+        other:                           18926
+        total:                           189260
+    transactions:                        9463   (157.48 per sec.)
+    queries:                             189260 (3149.52 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0902s
+    total number of events:              9463
+
+Latency (ms):
+         min:                                   10.89
+         avg:                                   31.73
+         max:                                  331.72
+         99th percentile:                      144.97
+         sum:                               300231.06
+
+Threads fairness:
+    events (avg/stddev):           1892.6000/11.57
+    execution time (avg/stddev):   60.0462/0.03
+

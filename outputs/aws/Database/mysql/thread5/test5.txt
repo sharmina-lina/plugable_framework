@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 177.05 qps: 3547.82 (r/w/o: 2483.81/709.40/354.60) lat (ms,99%): 134.90 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 154.10 qps: 3081.50 (r/w/o: 2157.30/616.00/308.20) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 156.49 qps: 3129.22 (r/w/o: 2190.70/625.54/312.97) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 149.32 qps: 2988.03 (r/w/o: 2091.23/598.17/298.63) lat (ms,99%): 153.02 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 151.51 qps: 3031.19 (r/w/o: 2122.10/606.06/303.03) lat (ms,99%): 147.61 err/s: 0.00 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 152.67 qps: 3051.81 (r/w/o: 2136.29/610.18/305.34) lat (ms,99%): 153.02 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            131838
+        write:                           37668
+        other:                           18834
+        total:                           188340
+    transactions:                        9417   (156.88 per sec.)
+    queries:                             188340 (3137.64 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0245s
+    total number of events:              9417
+
+Latency (ms):
+         min:                                    9.63
+         avg:                                   31.86
+         max:                                  224.07
+         99th percentile:                      147.61
+         sum:                               300005.79
+
+Threads fairness:
+    events (avg/stddev):           1883.4000/4.03
+    execution time (avg/stddev):   60.0012/0.01
+

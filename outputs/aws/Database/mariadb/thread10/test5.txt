@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 10
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 10 tps: 293.83 qps: 5895.91 (r/w/o: 4130.73/1176.12/589.06) lat (ms,99%): 95.81 err/s: 0.40 reconn/s: 0.00
+[ 20s ] thds: 10 tps: 265.32 qps: 5310.70 (r/w/o: 3717.91/1061.86/530.93) lat (ms,99%): 116.80 err/s: 0.30 reconn/s: 0.00
+[ 30s ] thds: 10 tps: 266.87 qps: 5338.76 (r/w/o: 3737.62/1067.09/534.05) lat (ms,99%): 125.52 err/s: 0.30 reconn/s: 0.00
+[ 40s ] thds: 10 tps: 264.13 qps: 5289.61 (r/w/o: 3703.83/1057.22/528.56) lat (ms,99%): 123.28 err/s: 0.30 reconn/s: 0.00
+[ 50s ] thds: 10 tps: 261.69 qps: 5239.82 (r/w/o: 3669.07/1046.96/523.78) lat (ms,99%): 127.81 err/s: 0.40 reconn/s: 0.00
+[ 60s ] thds: 10 tps: 246.61 qps: 4937.00 (r/w/o: 3456.64/986.94/493.42) lat (ms,99%): 147.61 err/s: 0.20 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            224196
+        write:                           63996
+        other:                           32009
+        total:                           320201
+    transactions:                        15995  (266.41 per sec.)
+    queries:                             320201 (5333.29 per sec.)
+    ignored errors:                      19     (0.32 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0367s
+    total number of events:              15995
+
+Latency (ms):
+         min:                                    8.01
+         avg:                                   37.52
+         max:                                 1404.35
+         99th percentile:                      123.28
+         sum:                               600081.95
+
+Threads fairness:
+    events (avg/stddev):           1599.5000/9.24
+    execution time (avg/stddev):   60.0082/0.01
+

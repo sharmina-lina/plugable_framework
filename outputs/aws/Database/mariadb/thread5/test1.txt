@@ -1,0 +1,44 @@
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 5
+Report intermediate results every 10 second(s)
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+[ 10s ] thds: 5 tps: 250.69 qps: 5018.97 (r/w/o: 3514.34/1002.75/501.88) lat (ms,99%): 62.19 err/s: 0.00 reconn/s: 0.00
+[ 20s ] thds: 5 tps: 234.34 qps: 4693.27 (r/w/o: 3285.61/938.77/468.89) lat (ms,99%): 102.97 err/s: 0.20 reconn/s: 0.00
+[ 30s ] thds: 5 tps: 212.06 qps: 4242.67 (r/w/o: 2970.72/847.63/424.32) lat (ms,99%): 155.80 err/s: 0.20 reconn/s: 0.00
+[ 40s ] thds: 5 tps: 239.25 qps: 4785.84 (r/w/o: 3349.96/957.39/478.49) lat (ms,99%): 81.48 err/s: 0.00 reconn/s: 0.00
+[ 50s ] thds: 5 tps: 236.30 qps: 4727.37 (r/w/o: 3309.25/945.41/472.71) lat (ms,99%): 75.82 err/s: 0.10 reconn/s: 0.00
+[ 60s ] thds: 5 tps: 249.71 qps: 4991.74 (r/w/o: 3494.20/998.13/499.41) lat (ms,99%): 80.03 err/s: 0.00 reconn/s: 0.00
+SQL statistics:
+    queries performed:
+        read:                            199276
+        write:                           56923
+        other:                           28463
+        total:                           284662
+    transactions:                        14229  (237.06 per sec.)
+    queries:                             284662 (4742.56 per sec.)
+    ignored errors:                      5      (0.08 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          60.0214s
+    total number of events:              14229
+
+Latency (ms):
+         min:                                    6.59
+         avg:                                   21.08
+         max:                                  702.53
+         99th percentile:                       90.78
+         sum:                               300005.18
+
+Threads fairness:
+    events (avg/stddev):           2845.8000/10.83
+    execution time (avg/stddev):   60.0010/0.00
+
